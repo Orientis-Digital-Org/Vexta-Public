@@ -25,9 +25,9 @@ export default function Error500Page() {
         </Link>
 
         <div className="w-full pt-6 mt-4 border-t border-[#1C241B] flex flex-col items-center">
-          <div className="font-mono text-sm font-extrabold text-[#39FF14] tracking-widest uppercase">Vexta Bridge</div>
+          <div className="font-mono text-sm font-extrabold text-[#39FF14] tracking-widest uppercase">Vexta App</div>
           <div className="font-mono text-[9px] text-[#7E927F] tracking-widest uppercase mt-0.5">
-            Zero-Knowledge Relay Server
+            Sovereign Encrypted Messenger
           </div>
         </div>
       </BentoCard>

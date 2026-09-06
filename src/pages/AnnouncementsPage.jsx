@@ -23,7 +23,7 @@ export default function AnnouncementsPage() {
   });
 
   return (
-    <div className="flex flex-col gap-10 py-4 text-gray-200 min-h-[75vh] max-w-5xl mx-auto w-full">
+    <div className="flex flex-col gap-10 py-4 text-gray-200 min-h-[75vh] w-full">
       {/* Hero Header Bento */}
       <BentoCard hover={false} className="p-8 md:p-12 text-center flex flex-col items-center gap-5 relative overflow-hidden">
         <div className="w-16 h-16 rounded-2xl bg-[#22C55E]/15 border border-[#22C55E]/40 flex items-center justify-center text-3xl text-[#39FF14] shadow-[0_0_20px_rgba(57,255,20,0.2)]">
@@ -32,7 +32,7 @@ export default function AnnouncementsPage() {
         <SectionHeader
           tag="// SYSTEM FEED"
           title="System Broadcast Dispatches"
-          description="Historical feed of Vexta Bridge server announcements, security updates, protocol deployments, and maintenance dispatches."
+          description="Official feed of Vexta App releases, security advisories, protocol upgrades, and client changelogs."
         />
       </BentoCard>
 
@@ -93,7 +93,7 @@ export default function AnnouncementsPage() {
                 <span className="flex items-center gap-1.5 text-[#39FF14] font-bold uppercase">
                   <i className="fa-solid fa-circle-check"></i> SIGNATURE AUTHENTICATED
                 </span>
-                <span className="text-[#4ADE80] uppercase font-bold">RSA-OAEP-4096 SIGNED</span>
+                <span className="text-[#4ADE80] uppercase font-bold">ED25519 SIGNED</span>
               </div>
             </BentoCard>
           ))

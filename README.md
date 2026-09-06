@@ -14,7 +14,7 @@
 
 - 🏠 **Home Page (`HomePage.jsx`)**: Hero showcases, protocol feature cards, architecture overview, and interactive UI previews.
 - 📦 **Downloads Portal (`DownloadsPage.jsx`)**: Multi-platform release mirrors (Windows `.exe`/`.zip`, Linux `.AppImage`/`.deb`/`.tar.gz`, Android `.apk`) with live SHA-256 hash checksum verification and historical release archives.
-- 📚 **Documentation Hub (`DocsPage.jsx`)**: Developer & user guides detailing RSA-4096 / AES-256-GCM cryptographic specifications, Vexta V2 Rust Bridge WebSocket protocols, and WebRTC P2P signaling.
+- 📚 **Documentation Hub (`DocsPage.jsx`)**: Developer & user guides detailing Ed25519, X25519 Double Ratchet, and AES-256-GCM cryptographic specifications, Vexta V2 Rust Bridge WebSocket protocols, and WebRTC P2P signaling.
 - 📢 **Announcements (`AnnouncementsPage.jsx`)**: Official release notes, protocol upgrades, and security advisory feed.
 - ❓ **FAQ (`FaqPage.jsx`)**: Frequently asked questions about Zero-Knowledge privacy, E2EE key security, and self-hosting.
 - 🛡️ **About & Trust (`AboutPage.jsx`)**: Orientis Digital brand principles and cryptographic verification guides.

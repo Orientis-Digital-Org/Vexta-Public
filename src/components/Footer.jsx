@@ -1,17 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
 
 export default function Footer() {
-  const { bridgeName } = useApp();
-
   return (
     <footer id="contact" className="py-14 border-t border-[#243022] bg-[#0A0D09] z-20 relative overflow-hidden mt-auto">
       {/* Background ambient highlights */}
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#22C55E]/4 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute top-0 left-0 w-[200px] h-[200px] bg-[#39FF14]/3 rounded-full blur-[90px] pointer-events-none"></div>
 
-      <div className="container mx-auto px-[5%] max-w-[1400px]">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Status Indicator Bar */}
         <div className="flex items-center justify-between border-b border-[#1C241B] pb-4 mb-8 flex-wrap gap-4 select-none">
           <div className="flex items-center gap-2">
@@ -20,11 +17,11 @@ export default function Footer() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#39FF14]"></span>
             </span>
             <span className="font-mono text-xs md:text-sm tracking-widest uppercase text-[#4ADE80] font-bold">
-              // SECURE RELAY CHANNEL ACTIVE
+              // VEXTA APP // SOVEREIGN ENCRYPTED MESSENGER
             </span>
           </div>
           <div className="font-mono text-[11px] md:text-xs text-[#7E927F] tracking-widest uppercase font-bold">
-            HASH-VERIFIABLE FINGERPRINTS ENFORCED
+            ED25519 &amp; DOUBLE RATCHET VERIFIED
           </div>
         </div>
 
@@ -39,17 +36,17 @@ export default function Footer() {
               <div className="flex flex-col justify-center">
                 <div className="flex items-center gap-1">
                   <span className="font-sans text-sm md:text-base font-bold text-neon-gradient tracking-tight leading-none uppercase">
-                    {bridgeName}
+                    Vexta
                   </span>
                   <span className="text-[#39FF14] animate-blink font-bold text-sm leading-none">_</span>
                 </div>
                 <span className="font-sans text-[10px] text-[#7E927F] tracking-[0.2em] uppercase mt-1 border-t border-[#1C241B] pt-0.5 inline-block w-full font-bold">
-                  Developed by Orientis Digital
+                  Engineered by Orientis Digital
                 </span>
               </div>
             </NavLink>
             <p className="text-xs md:text-sm text-[#7E927F] border-l-2 border-[#22C55E]/30 pl-3.5 leading-relaxed font-sans max-w-sm">
-              Orientis Digital constructs metadata-blind WebSocket relay servers to route cryptographic envelopes end-to-end, neutralizing external monitoring.
+              Vexta is a sovereign, peer-to-peer, end-to-end encrypted messaging application for Windows, Linux, and Android. Private keys, chat histories, and ratchet states remain exclusively on your local device.
             </p>
           </div>
 
@@ -68,9 +65,6 @@ export default function Footer() {
               <NavLink to="/downloads" className="text-gray-300 hover:text-[#39FF14] transition-colors py-1">
                 Client Releases
               </NavLink>
-              <NavLink to="/announcements" className="text-gray-300 hover:text-[#39FF14] transition-colors py-1">
-                Dispatches
-              </NavLink>
               <NavLink to="/about" className="text-gray-300 hover:text-[#39FF14] transition-colors py-1">
                 About Orientis
               </NavLink>
@@ -83,20 +77,24 @@ export default function Footer() {
           {/* Column 3: Cryptographic Specs */}
           <div className="flex flex-col gap-4">
             <h4 className="text-sm font-bold uppercase tracking-widest border-b border-[#1C241B] pb-2 font-mono text-[#4ADE80]">
-              // Relay Guarantees
+              // Encryption Standards
             </h4>
             <div className="flex flex-col gap-3 font-mono text-xs md:text-sm text-gray-200">
               <div className="flex items-center gap-2.5">
                 <i className="fa-solid fa-shield-halved text-[#39FF14] text-sm"></i>
-                <span>Zero Server Plaintext Storage</span>
+                <span>Ed25519 Identity Signatures</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <i className="fa-solid fa-key text-[#22C55E] text-sm"></i>
-                <span>RSA-4096 / AES-256-GCM Hybrid</span>
+                <i className="fa-solid fa-repeat text-[#22C55E] text-sm"></i>
+                <span>X25519 Double Ratchet (PFS &amp; PCS)</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <i className="fa-solid fa-bolt text-[#4ADE80] text-sm"></i>
-                <span>Binary WebSocket Framing</span>
+                <i className="fa-solid fa-lock text-[#4ADE80] text-sm"></i>
+                <span>AES-256-GCM Payload Encryption</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <i className="fa-solid fa-vault text-[#7E927F] text-sm"></i>
+                <span>Argon2id Encrypted Local Vault</span>
               </div>
             </div>
           </div>
@@ -108,7 +106,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Orientis Digital. All Rights Reserved.
           </div>
           <div className="font-mono text-xs text-gray-400">
-            Vexta Messenger // High-Assurance Communications
+            Vexta App // Sovereign End-to-End Encrypted Communications
           </div>
         </div>
       </div>

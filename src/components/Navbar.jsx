@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { bridgeName } = useApp();
-  const location = useLocation();
+    const location = useLocation();
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Docs', path: '/docs' },
     { name: 'Downloads', path: '/downloads' },
-    { name: 'Announcements', path: '/announcements' },
     { name: 'About', path: '/about' },
     { name: 'FAQ', path: '/faq' }
   ];
 
   return (
     <>
-      <header className="h-[80px] fixed top-4 inset-x-[5%] max-w-[1400px] mx-auto z-[999] solid-panel bg-[#0E120D]/95 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.85)] border border-[#243022]">
-        <div className="container flex justify-between items-center h-full relative mx-auto px-6">
+      <header className="h-[80px] fixed top-4 inset-x-4 sm:inset-x-6 lg:inset-x-8 max-w-7xl mx-auto z-[999] solid-panel bg-[#0E120D]/95 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.85)] border border-[#243022]">
+        <div className="flex justify-between items-center h-full relative w-full px-5 md:px-7">
           {/* Logo Branding */}
           <NavLink to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3.5 no-underline group cursor-pointer">
             <div className="relative w-11 h-11 border border-[#22C55E]/40 rounded-xl flex items-center justify-center bg-[#22C55E]/10 shadow-[0_0_15px_rgba(34,197,94,0.2)] group-hover:shadow-[0_0_25px_rgba(57,255,20,0.45)] group-hover:border-[#39FF14] transition-all duration-300 select-none p-1.5 overflow-hidden">
@@ -33,12 +30,12 @@ export default function Navbar() {
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-1">
                 <span className="font-sans text-base md:text-lg font-extrabold text-neon-gradient tracking-tight leading-none uppercase">
-                  {bridgeName}
+                  Vexta
                 </span>
                 <span className="text-[#39FF14] animate-blink font-bold text-base leading-none">_</span>
               </div>
               <span className="font-sans text-[10px] md:text-[11px] text-[#7E927F] tracking-[0.2em] uppercase mt-1 border-t border-[#1C241B] pt-0.5 inline-block w-full font-bold">
-                Zero-Knowledge Relay
+                Encrypted Messenger
               </span>
             </div>
           </NavLink>

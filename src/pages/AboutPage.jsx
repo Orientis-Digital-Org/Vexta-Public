@@ -1,368 +1,236 @@
-import React, { useState } from 'react';
-import { useApp } from '../context/AppContext';
-import confetti from 'canvas-confetti';
 import BentoCard from '../components/ui/BentoCard';
 import StatusBadge from '../components/ui/StatusBadge';
 import SectionHeader from '../components/ui/SectionHeader';
+import { Link } from 'react-router-dom';
 
 export default function AboutPage() {
-  const { bridgeName } = useApp();
-  const [flowTab, setFlowTab] = useState(1);
-  const [copiedFlow, setCopiedFlow] = useState(false);
+  const problems = [
+    {
+      icon: 'fa-solid fa-address-book',
+      problemTitle: 'Phone Number & Identity Demands',
+      problemDesc: 'Mainstream messaging apps force you to surrender your personal phone number, upload your address book, and tie your digital self to your physical real-world identity.',
+      solutionTitle: 'Complete Pseudonymous Freedom',
+      solutionDesc: 'Vexta asks for zero personal credentials. No phone number, no email address, and no SMS codes. You pick a display name and start talking immediately.'
+    },
+    {
+      icon: 'fa-solid fa-cloud-arrow-up',
+      problemTitle: 'Vulnerable Cloud Backups',
+      problemDesc: 'Even apps with end-to-end encryption quietly upload your chat logs to unencrypted or remotely accessible cloud backups that can be breached, subpoenaed, or leaked.',
+      solutionTitle: 'Physical Device Sovereignty',
+      solutionDesc: 'Your conversation history never sits on remote company servers. All messages reside strictly inside your local device vault, locked with your personal passcode.'
+    },
+    {
+      icon: 'fa-solid fa-chart-pie',
+      problemTitle: 'Metadata Harvesting & Ad Profiling',
+      problemDesc: 'Tech corporations track who you message, what time you talk, your location, and how often you connect, packaging your social circle into an advertising profile.',
+      solutionTitle: 'Blind Envelope Delivery',
+      solutionDesc: 'Vexta relay servers work like blind postal couriers. They pass sealed digital envelopes from one device to another and immediately erase them from memory.'
+    },
+    {
+      icon: 'fa-solid fa-user-slash',
+      problemTitle: 'Centralized Bans & Remote Lockouts',
+      problemDesc: 'When private companies control your account, they can ban you, censor your conversations, or shut down your access without recourse or warning.',
+      solutionTitle: 'Indestructible Digital Identity',
+      solutionDesc: 'Your identity in Vexta is a cryptographic lock created directly on your device. No central authority can disable, revoke, or confiscate your ability to connect.'
+    }
+  ];
 
-  // Bug Report Form State
-  const [reportCategory, setReportCategory] = useState('bug');
-  const [reportSeverity, setReportSeverity] = useState('medium');
-  const [reportTarget, setReportTarget] = useState('windows');
-  const [reportTitle, setReportTitle] = useState('');
-  const [reportDetails, setReportDetails] = useState('');
-  const [reportContact, setReportContact] = useState('');
-  const [submittedTicket, setSubmittedTicket] = useState(null);
-
-  const flowPayloads = {
-    1: `{
-  "type": "AUTH_CHALLENGE",
-  "nonce": "48b6f3a612c90a1b2c3d4e5f6a7b8c9d",
-  "server_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...",
-  "server_signature": "BASE64_SERVER_SIGNATURE_OF_NONCE"
-}`,
-    2: `{
-  "type": "AUTH_RESPONSE",
-  "username": "alice",
-  "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...",
-  "signature": "BASE64_CLIENT_SIGNATURE_OF_NONCE"
-}`,
-    3: `{
-  "type": "AUTH_SUCCESS",
-  "user_id": 142,
-  "status": "AUTHENTICATED",
-  "pending_envelopes": 0
-}`
-  };
-
-  const handleCopyFlow = () => {
-    navigator.clipboard.writeText(flowPayloads[flowTab]);
-    setCopiedFlow(true);
-    setTimeout(() => setCopiedFlow(false), 2000);
-  };
-
-  const handleReportSubmit = (e) => {
-    e.preventDefault();
-    if (!reportTitle.trim() || !reportDetails.trim()) return;
-
-    // Generate random ticket hash
-    const ticketId = 'TICKET-' + Math.random().toString(36).substring(2, 9).toUpperCase();
-    const timestamp = new Date().toUTCString();
-
-    setSubmittedTicket({
-      id: ticketId,
-      timestamp,
-      category: reportCategory,
-      severity: reportSeverity,
-      target: reportTarget,
-      title: reportTitle
-    });
-
-    try {
-      confetti({
-        particleCount: 65,
-        spread: 60,
-        origin: { y: 0.8 },
-        colors: ['#39FF14', '#22C55E', '#4ADE80']
-      });
-    } catch {}
-
-    setReportTitle('');
-    setReportDetails('');
-    setReportContact('');
-  };
+  const pillars = [
+    {
+      icon: 'fa-solid fa-hand-holding-heart',
+      title: 'Human-First Design',
+      desc: 'Privacy should not require a computer science degree. Vexta provides enterprise-grade protection with a clean, modern interface anyone can enjoy.'
+    },
+    {
+      icon: 'fa-solid fa-ban',
+      title: 'Zero Ads, Zero Trackers',
+      desc: 'There are no analytics trackers, advertising beacons, or third-party cookies embedded in Vexta. Your attention and data are entirely your own.'
+    },
+    {
+      icon: 'fa-solid fa-earth-americas',
+      title: 'Cross-Platform Freedom',
+      desc: 'Seamlessly connect with your inner circle across Windows, Linux, and Android devices without being forced into a single hardware ecosystem.'
+    }
+  ];
 
   return (
-    <div className="flex flex-col gap-10 py-4 text-gray-200 min-h-[75vh] max-w-5xl mx-auto w-full">
-      {/* Hero Header Bento */}
-      <BentoCard hover={false} className="p-8 md:p-12 text-center flex flex-col items-center gap-5 relative overflow-hidden">
-        <div className="w-16 h-16 rounded-2xl bg-[#22C55E]/15 border border-[#22C55E]/40 flex items-center justify-center text-3xl text-[#39FF14] shadow-[0_0_20px_rgba(57,255,20,0.2)]">
-          <i className="fa-solid fa-circle-info"></i>
-        </div>
+    <div className="flex flex-col gap-8 py-4 max-w-5xl mx-auto w-full">
+      {/* 1. Page Header */}
+      <BentoCard hover={false} className="p-8 md:p-12 flex flex-col items-center text-center gap-6 border-[#243022] bg-[#0E120D]">
         <SectionHeader
           tag="// ABOUT VEXTA"
-          title={`About ${bridgeName}`}
-          description="A zero-trust, metadata-blind WebSocket relay server for the Vexta encrypted messenger, engineered by Orientis Digital."
+          title="The Story Behind Vexta"
+          description="Why we built an uncompromising communication tool designed to return privacy, dignity, and autonomy back to people."
         />
-      </BentoCard>
 
-      {/* Core Architecture Bento Grid */}
-      <BentoCard hover={false} className="p-7 md:p-9 flex flex-col gap-6 shadow-xl">
-        <h2 className="text-base md:text-lg font-bold uppercase tracking-wider text-white flex items-center gap-2 font-mono">
-          <span className="inline-block w-2 h-4 bg-[#22C55E]"></span> Zero-Trust Architecture Overview
-        </h2>
-        <p className="leading-relaxed font-sans text-sm md:text-base text-gray-200">
-          <strong className="text-white">Vexta</strong> is the client messaging app, engineered by <strong className="text-[#39FF14]">Orientis Digital</strong>. <strong className="text-white">Vexta Bridge</strong> is the zero-trust backend relay node powering the secure messaging pipeline.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-2">
-          <div className="bg-[#060805] p-6 rounded-2xl border border-[#243022] flex flex-col gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-2xl">
-              <i className="fa-solid fa-eye-slash"></i>
-            </div>
-            <h3 className="font-bold text-white uppercase text-sm md:text-base tracking-wider font-mono">Metadata-Blind Relay</h3>
-            <p className="text-xs md:text-sm text-gray-300 leading-relaxed font-sans">
-              Messages are encrypted on device using hybrid cryptography before transmission. The bridge cannot inspect sender/receiver content or session keys.
-            </p>
-          </div>
-
-          <div className="bg-[#060805] p-6 rounded-2xl border border-[#243022] flex flex-col gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-2xl">
-              <i className="fa-solid fa-memory"></i>
-            </div>
-            <h3 className="font-bold text-white uppercase text-sm md:text-base tracking-wider font-mono">Volatile RAM Queue</h3>
-            <p className="text-xs md:text-sm text-gray-300 leading-relaxed font-sans">
-              Envelopes are held strictly in temporary RAM memory during socket delivery. Zero plaintext database persistence occurs at any time.
-            </p>
-          </div>
-
-          <div className="bg-[#060805] p-6 rounded-2xl border border-[#243022] flex flex-col gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-2xl">
-              <i className="fa-solid fa-key"></i>
-            </div>
-            <h3 className="font-bold text-white uppercase text-sm md:text-base tracking-wider font-mono">No Private Key Storage</h3>
-            <p className="text-xs md:text-sm text-gray-300 leading-relaxed font-sans">
-              User RSA-4096 private keys never touch the network. They remain sealed inside the client device vault encrypted with Argon2id.
-            </p>
-          </div>
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
+          <StatusBadge label="Zero Surveillance" variant="neon" />
+          <StatusBadge label="No Phone Numbers" variant="green" />
+          <StatusBadge label="Local Device Vaults" variant="neon" />
         </div>
       </BentoCard>
 
-      {/* Interactive Handshake Protocol Flow Inspector */}
-      <BentoCard hover={false} className="p-7 md:p-9 flex flex-col gap-6 shadow-xl">
-        <div className="flex items-center justify-between border-b border-[#243022] pb-4 flex-wrap gap-4">
+      {/* 2. Mission Statement */}
+      <BentoCard hover={false} className="p-8 md:p-12 flex flex-col gap-6 border-[#243022] leading-relaxed">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-xl">
+            <i className="fa-solid fa-quote-left"></i>
+          </div>
           <div>
-            <h2 className="text-base md:text-lg font-bold uppercase tracking-wider text-white flex items-center gap-2 font-mono">
-              <span className="inline-block w-2 h-4 bg-[#22C55E]"></span> Interactive Handshake Protocol Inspector
+            <span className="text-xs font-mono uppercase text-[#39FF14] font-bold tracking-widest">// OUR CORE MISSION</span>
+            <h2 className="text-xl md:text-2xl font-bold text-white uppercase font-mono tracking-wide">
+              Privacy Is a Human Right, Not a Luxury
             </h2>
-            <p className="text-xs text-gray-300 font-sans mt-0.5">
-              Click through the WebSocket authentication stages to inspect live JSON payload exchanges.
-            </p>
           </div>
-
-          <button
-            onClick={handleCopyFlow}
-            className="px-4 py-2 text-xs font-mono font-bold uppercase bg-[#22C55E]/15 hover:bg-[#22C55E] border border-[#22C55E]/40 text-[#39FF14] hover:text-black rounded-xl transition-all cursor-pointer flex items-center gap-2"
-          >
-            <i className={`fa-solid ${copiedFlow ? 'fa-check text-black' : 'fa-copy text-[#39FF14]'}`}></i>
-            <span>{copiedFlow ? 'COPIED JSON' : 'COPY JSON'}</span>
-          </button>
         </div>
 
-        {/* Step Selector Tabs */}
-        <div className="flex flex-wrap items-center gap-2.5 select-none">
-          {[
-            { step: 1, label: 'Step 1: Auth Challenge' },
-            { step: 2, label: 'Step 2: Auth Response' },
-            { step: 3, label: 'Step 3: Auth Success' }
-          ].map((item) => (
-            <button
-              key={item.step}
-              onClick={() => setFlowTab(item.step)}
-              className={`px-5 py-2.5 rounded-xl font-mono text-xs md:text-sm font-bold uppercase transition-all cursor-pointer border ${
-                flowTab === item.step
-                  ? 'bg-[#22C55E] text-black border-[#39FF14] shadow-md'
-                  : 'bg-[#060805] text-gray-300 border-[#243022] hover:text-white hover:bg-[#141C13]'
-              }`}
-            >
-              {item.label}
-            </button>
+        <p className="text-sm md:text-base text-gray-200 leading-relaxed font-sans">
+          In an era where every message, relationship, and conversation is monetized, logged, and fed into surveillance algorithms, <strong className="text-white">Vexta</strong> was created as a refusal to accept that status quo.
+        </p>
+        <p className="text-sm md:text-base text-gray-300 leading-relaxed font-sans">
+          We believe that private conversations should remain just that—private. What you discuss with your family, friends, colleagues, and collaborators belongs solely to you, free from corporate middlemen, data brokers, and eavesdropping.
+        </p>
+      </BentoCard>
+
+      {/* 3. Problems Vexta Tries to Solve */}
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <span className="inline-block w-2.5 h-2.5 bg-[#39FF14] rounded-full"></span>
+            <span className="text-xs font-mono uppercase text-[#39FF14] font-bold tracking-widest">// THE PROBLEMS WE SOLVE</span>
+          </div>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white uppercase font-mono tracking-tight">
+            Why Modern Messaging Is Broken
+          </h2>
+          <p className="text-xs md:text-sm text-gray-400">
+            How mainstream communication tools compromise your personal autonomy, and how Vexta fixes each issue.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {problems.map((item, idx) => (
+            <BentoCard key={idx} hover={true} className="p-6 md:p-8 flex flex-col gap-5 border-[#243022] bg-[#0E120D]">
+              <div className="w-12 h-12 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-xl shrink-0">
+                <i className={item.icon}></i>
+              </div>
+
+              {/* Problem Block */}
+              <div className="flex flex-col gap-1.5 p-4 rounded-xl bg-red-950/20 border border-red-900/30">
+                <div className="flex items-center gap-2 text-red-400 font-mono text-xs font-bold uppercase tracking-wider">
+                  <i className="fa-solid fa-triangle-exclamation"></i>
+                  <span>The Problem: {item.problemTitle}</span>
+                </div>
+                <p className="text-xs text-gray-300 leading-relaxed">
+                  {item.problemDesc}
+                </p>
+              </div>
+
+              {/* Solution Block */}
+              <div className="flex flex-col gap-1.5 p-4 rounded-xl bg-[#141C13] border border-[#22C55E]/30">
+                <div className="flex items-center gap-2 text-[#39FF14] font-mono text-xs font-bold uppercase tracking-wider">
+                  <i className="fa-solid fa-shield-check"></i>
+                  <span>The Vexta Solution: {item.solutionTitle}</span>
+                </div>
+                <p className="text-xs text-gray-200 leading-relaxed">
+                  {item.solutionDesc}
+                </p>
+              </div>
+            </BentoCard>
           ))}
         </div>
+      </div>
 
-        {/* JSON Display Screen */}
-        <div className="bg-[#060805] border border-[#243022] rounded-2xl p-5 font-mono text-xs md:text-sm text-gray-200 shadow-inner">
-          <div className="flex items-center justify-between text-xs text-[#7E927F] border-b border-[#243022] pb-2.5 mb-3 font-bold">
-            <span>
-              {flowTab === 1 ? 'SERVER -> CLIENT' : flowTab === 2 ? 'CLIENT -> SERVER' : 'SERVER -> CLIENT'}
-            </span>
-            <span className="text-[#39FF14] font-bold">
-              {flowTab === 1 ? 'AUTH_CHALLENGE' : flowTab === 2 ? 'AUTH_RESPONSE' : 'AUTH_SUCCESS'}
-            </span>
-          </div>
-          <pre className="overflow-x-auto leading-relaxed text-gray-200 font-mono">
-            <code>{flowPayloads[flowTab]}</code>
-          </pre>
-        </div>
-      </BentoCard>
+      {/* 4. Three Pillars of Experience */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {pillars.map((pillar, i) => (
+          <BentoCard key={i} hover={false} className="p-6 rounded-2xl border-[#243022] bg-[#060805] flex flex-col gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-lg">
+              <i className={pillar.icon}></i>
+            </div>
+            <h3 className="text-base font-bold text-white uppercase font-mono tracking-wide">
+              {pillar.title}
+            </h3>
+            <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+              {pillar.desc}
+            </p>
+          </BentoCard>
+        ))}
+      </div>
 
-      {/* Developer Spotlight: Orientis Digital */}
-      <BentoCard className="p-7 md:p-9 flex flex-col md:flex-row gap-7 items-center shadow-xl">
-        <div className="w-24 h-24 bg-[#22C55E]/10 border border-[#22C55E]/30 rounded-2xl flex items-center justify-center overflow-hidden shrink-0 p-4 shadow-sm">
+      {/* 5. Developer Section: Orientis Digital */}
+      <BentoCard hover={false} className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center border-[#243022] bg-[#0E120D] shadow-2xl">
+        <div className="w-28 h-28 bg-[#22C55E]/10 border border-[#22C55E]/30 rounded-2xl flex items-center justify-center overflow-hidden shrink-0 p-5 shadow-lg">
           <img src="/img/orientis-logo.png" alt="Orientis Digital Logo" className="w-full h-full object-contain" />
         </div>
-        <div className="flex-1 flex flex-col gap-2.5 text-left">
-          <span className="text-xs font-mono text-[#39FF14] uppercase tracking-widest font-bold">// CORE DEVELOPER SPOTLIGHT</span>
-          <h3 className="font-extrabold text-white text-lg md:text-xl uppercase tracking-wider font-mono">Designed &amp; Engineered by Orientis Digital</h3>
+
+        <div className="flex-1 flex flex-col gap-3.5 text-left">
+          <div className="flex items-center gap-2">
+            <StatusBadge label="// CORE DEVELOPER" variant="neon" />
+            <span className="text-xs font-mono text-gray-400">Software Studio</span>
+          </div>
+
+          <h3 className="font-extrabold text-white text-xl md:text-2xl uppercase tracking-wider font-mono">
+            Engineered by Orientis Digital
+          </h3>
+
           <p className="leading-relaxed font-sans text-xs md:text-sm text-gray-300">
-            Orientis Digital builds modern digital infrastructure, secure communication protocols, and intelligent software systems. Vexta is engineered to enforce absolute metadata privacy and zero-trust delivery.
+            Orientis Digital is an independent engineering team passionate about creating resilient communication tools, modern digital infrastructure, and sovereign software systems.
           </p>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 mt-2 pt-3.5 border-t border-[#243022]">
-            <div className="flex items-center gap-2 font-mono text-[11px] text-[#7E927F]">
-              <span className="bg-[#060805] border border-[#243022] px-2.5 py-1 rounded-md text-gray-200 font-bold">RSA-4096</span>
-              <span className="bg-[#060805] border border-[#243022] px-2.5 py-1 rounded-md text-gray-200 font-bold">AES-256-GCM</span>
-              <span className="bg-[#060805] border border-[#243022] px-2.5 py-1 rounded-md text-gray-200 font-bold">Argon2id</span>
+          <p className="leading-relaxed font-sans text-xs md:text-sm text-gray-400">
+            We build software with a fundamental principle: technology should empower the individual, not surveil them. Vexta is developed openly, ethically, and without venture capital surveillance incentives.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 mt-2 pt-4 border-t border-[#243022]">
+            <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span className="bg-[#060805] border border-[#243022] px-3 py-1.5 rounded-lg text-gray-300">
+                Independent Engineering
+              </span>
+              <span className="bg-[#060805] border border-[#243022] px-3 py-1.5 rounded-lg text-gray-300">
+                Open Protocols
+              </span>
+              <span className="bg-[#060805] border border-[#243022] px-3 py-1.5 rounded-lg text-[#39FF14]">
+                100% Zero-Tracking
+              </span>
             </div>
 
             <a
               href="https://nexusec.space/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs md:text-sm uppercase font-bold font-mono text-[#39FF14] hover:text-white tracking-wider flex items-center gap-1.5 no-underline"
+              className="px-5 py-2.5 rounded-xl font-mono text-xs md:text-sm font-bold uppercase bg-[#22C55E] text-black hover:bg-[#39FF14] transition-all no-underline flex items-center gap-2"
             >
-              <span>Visit Orientis Digital Website</span>
+              <span>Visit Orientis Digital</span>
               <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
             </a>
           </div>
         </div>
       </BentoCard>
 
-      {/* BUG REPORTING & SECURITY DISCLOSURE DESK */}
-      <BentoCard id="report-issue" hover={false} className="p-7 md:p-9 flex flex-col gap-6 shadow-xl scroll-mt-28">
-        <div className="flex items-center justify-between border-b border-[#243022] pb-4 flex-wrap gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl">
-              <i className="fa-solid fa-bug"></i>
-            </div>
-            <div>
-              <h2 className="text-base md:text-lg font-extrabold uppercase tracking-wider text-white font-mono">
-                Vulnerability Disclosure &amp; Bug Reporting Desk
-              </h2>
-              <p className="text-xs text-gray-300 font-sans">
-                Found a protocol flaw, client glitch, or security anomaly? Submit a disclosure report to Orientis Digital engineers.
-              </p>
-            </div>
-          </div>
-          <StatusBadge label="RESPONSIBLE DISCLOSURE" variant="red" />
-        </div>
-
-        {submittedTicket && (
-          <div className="p-5 border border-[#22C55E]/40 bg-[#22C55E]/10 text-[#39FF14] rounded-2xl flex flex-col gap-2 font-mono text-sm animate-in fade-in duration-200">
-            <div className="flex items-center justify-between font-bold border-b border-[#22C55E]/20 pb-2">
-              <span className="flex items-center gap-2">
-                <i className="fa-solid fa-circle-check text-lg text-[#39FF14]"></i> REPORT TRANSMITTED OK
-              </span>
-              <span className="text-white">{submittedTicket.id}</span>
-            </div>
-            <p className="text-xs md:text-sm font-sans text-gray-200 leading-relaxed">
-              Your disclosure ticket has been encrypted and queued for review by the security response team.
-            </p>
-          </div>
-        )}
-
-        <form onSubmit={handleReportSubmit} className="flex flex-col gap-5">
-          {/* Selectors Row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Category */}
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-mono font-bold uppercase text-[#4ADE80] tracking-wider">
-                Report Category
-              </label>
-              <select
-                value={reportCategory}
-                onChange={(e) => setReportCategory(e.target.value)}
-                className="bg-[#060805] border border-[#243022] rounded-xl p-3.5 font-mono text-xs md:text-sm text-gray-200 focus:outline-none focus:border-[#22C55E]"
-              >
-                <option value="bug">Software Bug Report</option>
-                <option value="security">Security Vulnerability (Zero-Day)</option>
-                <option value="protocol">Protocol Handshake Defect</option>
-                <option value="feature">Feature Improvement Proposal</option>
-              </select>
-            </div>
-
-            {/* Severity */}
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-mono font-bold uppercase text-[#4ADE80] tracking-wider">
-                Severity Level
-              </label>
-              <select
-                value={reportSeverity}
-                onChange={(e) => setReportSeverity(e.target.value)}
-                className="bg-[#060805] border border-[#243022] rounded-xl p-3.5 font-mono text-xs md:text-sm text-gray-200 focus:outline-none focus:border-[#22C55E]"
-              >
-                <option value="low">Low (Cosmetic / Typo)</option>
-                <option value="medium">Medium (Moderate Glitch)</option>
-                <option value="high">High (Feature Failure)</option>
-                <option value="critical">Critical (Security Vulnerability)</option>
-              </select>
-            </div>
-
-            {/* Target Component */}
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-mono font-bold uppercase text-[#4ADE80] tracking-wider">
-                Affected Target
-              </label>
-              <select
-                value={reportTarget}
-                onChange={(e) => setReportTarget(e.target.value)}
-                className="bg-[#060805] border border-[#243022] rounded-xl p-3.5 font-mono text-xs md:text-sm text-gray-200 focus:outline-none focus:border-[#22C55E]"
-              >
-                <option value="windows">Windows App (EXE / ZIP)</option>
-                <option value="android">Android App (APK)</option>
-                <option value="linux">Linux App (TAR.GZ)</option>
-                <option value="relay">WebSocket Relay Server</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Title / Summary */}
-          <div className="flex flex-col gap-2">
-            <label className="text-xs font-mono font-bold uppercase text-[#4ADE80] tracking-wider">
-              Issue Summary / Title
-            </label>
-            <input
-              type="text"
-              value={reportTitle}
-              onChange={(e) => setReportTitle(e.target.value)}
-              required
-              placeholder="e.g. WebSocket re-connection fails after network interface change..."
-              className="bg-[#060805] border border-[#243022] rounded-xl p-3.5 font-mono text-xs md:text-sm text-gray-200 focus:outline-none focus:border-[#22C55E] placeholder:text-[#7E927F]"
-            />
-          </div>
-
-          {/* Details */}
-          <div className="flex flex-col gap-2">
-            <label className="text-xs font-mono font-bold uppercase text-[#4ADE80] tracking-wider">
-              Reproduction Steps &amp; Log Traceback
-            </label>
-            <textarea
-              rows={4}
-              value={reportDetails}
-              onChange={(e) => setReportDetails(e.target.value)}
-              required
-              placeholder="Provide exact steps to reproduce the issue, environment info, or relevant terminal output..."
-              className="bg-[#060805] border border-[#243022] rounded-xl p-3.5 font-mono text-xs md:text-sm text-gray-200 focus:outline-none focus:border-[#22C55E] placeholder:text-[#7E927F] leading-relaxed"
-            ></textarea>
-          </div>
-
-          {/* Optional Contact */}
-          <div className="flex flex-col gap-2">
-            <label className="text-xs font-mono font-bold uppercase text-[#4ADE80] tracking-wider">
-              Contact Handle / PGP Key Fingerprint (Optional)
-            </label>
-            <input
-              type="text"
-              value={reportContact}
-              onChange={(e) => setReportContact(e.target.value)}
-              placeholder="Optional email or public key fingerprint for follow-up verification..."
-              className="bg-[#060805] border border-[#243022] rounded-xl p-3.5 font-mono text-xs md:text-sm text-gray-200 focus:outline-none focus:border-[#22C55E] placeholder:text-[#7E927F]"
-            />
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="px-8 py-4 font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-black bg-[#22C55E] hover:bg-[#39FF14] hover:shadow-[0_0_25px_rgba(57,255,20,0.5)] rounded-xl transition-all duration-300 cursor-pointer text-center flex items-center justify-center gap-2 mt-2 border border-[#39FF14]"
+      {/* 6. Ready to Join Banner */}
+      <BentoCard hover={false} className="p-8 md:p-10 flex flex-col items-center text-center gap-4 border-[#243022] bg-[#060805]">
+        <h3 className="text-xl md:text-2xl font-extrabold text-white uppercase font-mono">
+          Ready to Take Back Your Conversations?
+        </h3>
+        <p className="text-xs md:text-sm text-gray-300 max-w-lg">
+          Download Vexta today. Setup takes less than 30 seconds with no personal details required.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <Link
+            to="/downloads"
+            className="px-6 py-3 rounded-xl font-mono text-xs md:text-sm font-bold uppercase bg-[#22C55E] text-black hover:bg-[#39FF14] transition-all no-underline flex items-center gap-2"
           >
-            <i className="fa-solid fa-paper-plane text-xs text-black"></i>
-            <span>Submit Encrypted Disclosure Report</span>
-          </button>
-        </form>
+            <i className="fa-solid fa-download"></i>
+            <span>Download Vexta Free</span>
+          </Link>
+          <Link
+            to="/docs"
+            className="px-6 py-3 rounded-xl font-mono text-xs md:text-sm font-bold uppercase bg-[#141C13] border border-[#243022] text-gray-200 hover:text-white hover:border-[#22C55E]/40 transition-all no-underline flex items-center gap-2"
+          >
+            <i className="fa-solid fa-book-open"></i>
+            <span>Read User Guide</span>
+          </Link>
+        </div>
       </BentoCard>
     </div>
   );

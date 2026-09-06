@@ -152,7 +152,7 @@ export default function DownloadsPage() {
     : null;
 
   return (
-    <div className="flex flex-col gap-12 py-4 max-w-5xl mx-auto w-full min-h-[75vh]">
+    <div className="flex flex-col gap-12 py-4 w-full min-h-[75vh]">
       
       {/* 1. HERO HEADER */}
       <SectionHeader

@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import DocsPage from './pages/DocsPage';
 import DownloadsPage from './pages/DownloadsPage';
-import AnnouncementsPage from './pages/AnnouncementsPage';
 import AboutPage from './pages/AboutPage';
 import FaqPage from './pages/FaqPage';
 import Error404Page from './pages/Error404Page';
@@ -25,12 +24,11 @@ export default function App() {
           <Navbar />
 
           {/* Main Content Area */}
-          <main id="main-content" className="flex-1 container mx-auto px-[5%] pt-32 pb-20 max-w-[1400px] z-10">
+          <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 z-10">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/docs" element={<DocsPage />} />
               <Route path="/downloads" element={<DownloadsPage />} />
-              <Route path="/announcements" element={<AnnouncementsPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/faq" element={<FaqPage />} />
               <Route path="/500" element={<Error500Page />} />
