@@ -8,8 +8,11 @@ import DocsPage from './pages/DocsPage';
 import DownloadsPage from './pages/DownloadsPage';
 import AboutPage from './pages/AboutPage';
 import FaqPage from './pages/FaqPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 import Error404Page from './pages/Error404Page';
 import Error500Page from './pages/Error500Page';
+import CookieBanner from './components/CookieBanner';
 
 export default function App() {
   return (
@@ -31,6 +34,8 @@ export default function App() {
               <Route path="/downloads" element={<DownloadsPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/faq" element={<FaqPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
               <Route path="/500" element={<Error500Page />} />
               <Route path="*" element={<Error404Page />} />
             </Routes>
@@ -38,6 +43,7 @@ export default function App() {
 
           {/* Footer */}
           <Footer />
+          <CookieBanner />
         </div>
       </Router>
     </AppProvider>

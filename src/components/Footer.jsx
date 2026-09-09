@@ -71,6 +71,12 @@ export default function Footer() {
               <NavLink to="/faq" className="text-gray-300 hover:text-[#39FF14] transition-colors py-1">
                 Security FAQ
               </NavLink>
+              <NavLink to="/privacy" className="text-gray-300 hover:text-[#39FF14] transition-colors py-1">
+                Privacy Policy
+              </NavLink>
+              <NavLink to="/terms" className="text-gray-300 hover:text-[#39FF14] transition-colors py-1">
+                Terms of Service
+              </NavLink>
             </div>
           </div>
 
@@ -101,12 +107,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="pt-6 border-t border-[#1C241B] flex flex-col md:flex-row items-center justify-between text-xs text-[#7E927F] font-sans gap-2 select-none">
+        <div className="pt-6 border-t border-[#1C241B] flex flex-col md:flex-row items-center justify-between text-xs text-[#7E927F] font-sans gap-3 select-none">
           <div>
             &copy; {new Date().getFullYear()} Orientis Digital. All Rights Reserved.
           </div>
-          <div className="font-mono text-xs text-gray-400">
-            Vexta App // Sovereign End-to-End Encrypted Communications
+          <div className="flex items-center gap-4 font-mono text-xs text-gray-400">
+            <NavLink to="/privacy" className="hover:text-[#39FF14] transition-colors">Privacy</NavLink>
+            <NavLink to="/terms" className="hover:text-[#39FF14] transition-colors">Terms</NavLink>
+            <span className="text-[#243022]">|</span>
+            <span>Vexta App // Sovereign P2P Communications</span>
           </div>
         </div>
       </div>
