@@ -18,10 +18,10 @@ export default function App() {
   return (
     <AppProvider>
       <Router>
-        <div className="min-h-screen flex flex-col text-[#cbd5e1] font-sans antialiased overflow-x-hidden selection:bg-[#38bdf8] selection:text-[#070b12] bg-[#070b12] bg-cyber-grid relative">
-          {/* Ambient Cyber Blue Glows */}
-          <div className="fixed top-1/4 left-1/4 w-[600px] h-[600px] bg-[#38bdf8]/4 rounded-full blur-[160px] pointer-events-none z-[-1] animate-[pulse_8s_ease-in-out_infinite]"></div>
-          <div className="fixed bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#0ea5e9]/4 rounded-full blur-[140px] pointer-events-none z-[-1]"></div>
+        <div className="min-h-screen flex flex-col text-[#cbd5e1] font-sans antialiased overflow-x-hidden selection:bg-[#22C55E] selection:text-black bg-[#070b12] bg-cyber-grid relative">
+          {/* Ambient Cyber Green Glows */}
+          <div className="fixed top-1/4 left-1/4 w-[600px] h-[600px] bg-[#22C55E]/4 rounded-full blur-[160px] pointer-events-none z-[-1] animate-[pulse_8s_ease-in-out_infinite]"></div>
+          <div className="fixed bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#39FF14]/3 rounded-full blur-[140px] pointer-events-none z-[-1]"></div>
 
           {/* Navigation Bar */}
           <Navbar />

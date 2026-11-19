@@ -30,8 +30,8 @@ export default function Navbar() {
 
   const linkBaseStyle =
     "text-[13px] font-mono tracking-wider transition-all py-1.5 px-3 rounded-[2px] flex items-center gap-1.5 uppercase cursor-pointer select-none";
-  const activeStyle = `${linkBaseStyle} text-[#38bdf8] bg-[#0c182c]/80 border border-[#1e3a66] shadow-[0_0_12px_rgba(56,189,248,0.2)] font-semibold`;
-  const inactiveStyle = `${linkBaseStyle} text-[#94a3b8] hover:text-[#38bdf8] hover:bg-[#0c1322] border border-transparent`;
+  const activeStyle = `${linkBaseStyle} text-[#39ff14] bg-[#081a10] border border-[#1b3d22] shadow-[0_0_12px_rgba(57,255,20,0.25)] font-semibold`;
+  const inactiveStyle = `${linkBaseStyle} text-[#94a3b8] hover:text-[#4ade80] hover:bg-[#0c1322] border border-transparent`;
 
   return (
     <>
@@ -43,17 +43,17 @@ export default function Navbar() {
             onClick={() => setMobileOpen(false)}
             className="flex items-center gap-3 no-underline group cursor-pointer select-none min-w-0"
           >
-            <div className="relative w-9 h-9 border border-[#1e3a66] rounded-[3px] flex items-center justify-center bg-[#0c182c] shadow-[0_0_12px_rgba(56,189,248,0.2)] group-hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] group-hover:border-[#38bdf8] transition-all duration-300 p-1 overflow-hidden shrink-0">
+            <div className="relative w-9 h-9 border border-[#1b3d22] rounded-[3px] flex items-center justify-center bg-[#081a10] shadow-[0_0_12px_rgba(34,197,94,0.2)] group-hover:shadow-[0_0_20px_rgba(57,255,20,0.4)] group-hover:border-[#39ff14] transition-all duration-300 p-1 overflow-hidden shrink-0">
               <img src="/img/vexta-logo.png" alt="Vexta Logo" className="w-full h-full object-contain rounded-[2px] transition-transform duration-300 group-hover:scale-105" />
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#38bdf8] shadow-[0_0_6px_#38bdf8]"></span>
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#39ff14] shadow-[0_0_6px_#39ff14]"></span>
             </div>
             <div className="flex flex-col justify-center min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className="font-mono text-sm sm:text-base font-bold text-[#f8fafc] tracking-[0.14em] uppercase leading-tight truncate group-hover:text-[#38bdf8] transition-colors">
+                <span className="font-mono text-sm sm:text-base font-bold text-[#f8fafc] tracking-[0.14em] uppercase leading-tight truncate group-hover:text-[#4ade80] transition-colors">
                   VEXTA
                 </span>
-                <span className="text-[#38bdf8] animate-pulse font-mono text-xs font-bold leading-none">//</span>
-                <span className="font-mono text-[10px] text-[#38bdf8] uppercase tracking-wider hidden sm:inline">E2EE</span>
+                <span className="text-[#39ff14] animate-pulse font-mono text-xs font-bold leading-none">//</span>
+                <span className="font-mono text-[10px] text-[#22c55e] uppercase tracking-wider hidden sm:inline">E2EE</span>
               </div>
               <span className="font-mono text-[9px] sm:text-[10px] text-[#94a3b8] tracking-[0.12em] uppercase leading-tight truncate flex items-center gap-1">
                 <span>BY</span> <span className="text-[#cbd5e1] font-semibold">ORIENTIS DIGITAL</span>
@@ -72,7 +72,7 @@ export default function Navbar() {
                     to={link.path}
                     className={isActive ? activeStyle : inactiveStyle}
                   >
-                    <span className="text-[#38bdf8] text-[11px] opacity-75">{isActive ? '>' : '#'}</span>
+                    <span className="text-[#22c55e] text-[11px] opacity-75">{isActive ? '>' : '#'}</span>
                     <span>{link.name}</span>
                   </NavLink>
                 );
@@ -84,7 +84,7 @@ export default function Navbar() {
               to="/downloads"
               className="btn-cyber-primary text-xs py-2 px-3.5 tracking-wider hidden sm:inline-flex items-center gap-2"
             >
-              <i className="fa-solid fa-download text-xs text-[#38bdf8]"></i>
+              <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
               <span>[ GET CLIENT ]</span>
             </NavLink>
 
@@ -92,7 +92,7 @@ export default function Navbar() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle navigation menu"
-              className="md:hidden flex items-center justify-center w-9 h-9 border border-[#1e2e4a] rounded-[2px] bg-[#0c1322] text-[#38bdf8] hover:border-[#38bdf8] transition-colors cursor-pointer"
+              className="md:hidden flex items-center justify-center w-9 h-9 border border-[#1e2e4a] rounded-[2px] bg-[#0c1322] text-[#4ade80] hover:border-[#22c55e] transition-colors cursor-pointer"
             >
               <i className={`fa-solid ${mobileOpen ? 'fa-xmark text-lg' : 'fa-bars text-sm'}`}></i>
             </button>
@@ -108,7 +108,7 @@ export default function Navbar() {
               <span className="status-pulse"></span>
               <span>NAVIGATION_MENU</span>
             </span>
-            <span className="text-[#38bdf8]">SYS_ACTIVE</span>
+            <span className="text-[#4ade80]">SYS_ACTIVE</span>
           </div>
 
           <ul className="flex flex-col list-none gap-2.5 p-0 m-0">
@@ -121,12 +121,12 @@ export default function Navbar() {
                     onClick={() => setMobileOpen(false)}
                     className={`text-sm font-mono tracking-wider py-3 px-4 rounded-[2px] transition-all flex items-center justify-between uppercase no-underline ${
                       isActive
-                        ? 'bg-[#0c182c] text-[#38bdf8] font-medium border border-[#1e3a66] border-l-[3px] border-l-[#38bdf8] shadow-[0_0_15px_rgba(56,189,248,0.2)]'
-                        : 'text-[#cbd5e1] hover:text-[#38bdf8] bg-[#0a101d] border border-[#1e2e4a] hover:bg-[#0f1a2e]'
+                        ? 'bg-[#081a10] text-[#39ff14] font-medium border border-[#1b3d22] border-l-[3px] border-l-[#39ff14] shadow-[0_0_15px_rgba(57,255,20,0.2)]'
+                        : 'text-[#cbd5e1] hover:text-[#4ade80] bg-[#0a101d] border border-[#1e2e4a] hover:bg-[#0f1a2e]'
                     }`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className="text-[#38bdf8]">{isActive ? '>' : '#'}</span>
+                      <span className="text-[#22c55e]">{isActive ? '>' : '#'}</span>
                       <span>{link.name}</span>
                     </span>
                     <i className="fa-solid fa-chevron-right text-xs opacity-50"></i>

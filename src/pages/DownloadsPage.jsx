@@ -59,7 +59,7 @@ export default function DownloadsPage() {
         particleCount: 75,
         spread: 65,
         origin: { y: 0.75 },
-        colors: ['#38bdf8', '#0ea5e9', '#0284c7'],
+        colors: ['#39ff14', '#22c55e', '#4ade80'],
       });
     } catch {}
 
@@ -163,9 +163,9 @@ export default function DownloadsPage() {
         <div className="flex flex-col gap-8 animate-in fade-in duration-300">
           <BentoCard hover={false} brackets={true} className="p-8 md:p-12 border-[#1e2e4a] bg-[#0c1322] shadow-[0_15px_40px_rgba(0,0,0,0.7)] flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-5 w-full md:w-auto">
-              <div className="relative w-16 h-16 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-3xl shrink-0 shadow-lg">
+              <div className="relative w-16 h-16 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-3xl shrink-0 shadow-lg">
                 <span className="status-pulse"></span>
-                <i className="fa-solid fa-cloud-arrow-down animate-bounce text-2xl text-[#38bdf8]"></i>
+                <i className="fa-solid fa-cloud-arrow-down animate-bounce text-2xl text-[#39ff14]"></i>
               </div>
               <div className="flex flex-col text-left flex-1 gap-2">
                 <div className="flex items-center gap-2">
@@ -178,12 +178,12 @@ export default function DownloadsPage() {
                   Fetching verified binary manifests, signed checksums, and mirror endpoints
                 </span>
                 <div className="w-48 h-1.5 bg-[#070b12] rounded-[2px] overflow-hidden border border-[#1e2e4a] mt-1 relative">
-                  <div className="h-full bg-gradient-to-r from-[#0284c7] via-[#38bdf8] to-[#0ea5e9] rounded-[2px] animate-pulse w-1/2"></div>
+                  <div className="h-full bg-gradient-to-r from-[#16a34a] via-[#39ff14] to-[#22c55e] rounded-[2px] animate-pulse w-1/2"></div>
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-44 h-11 rounded-[2px] bg-[#08101d] border border-[#1e2e4a] flex items-center justify-center font-mono text-xs md:text-sm text-[#38bdf8] font-medium uppercase tracking-wider select-none">
-              <i className="fa-solid fa-circle-notch fa-spin mr-2 text-[#38bdf8]"></i>
+            <div className="w-full md:w-44 h-11 rounded-[2px] bg-[#08101d] border border-[#1e2e4a] flex items-center justify-center font-mono text-xs md:text-sm text-[#4ade80] font-medium uppercase tracking-wider select-none">
+              <i className="fa-solid fa-circle-notch fa-spin mr-2 text-[#39ff14]"></i>
               Connecting
             </div>
           </BentoCard>
@@ -193,9 +193,9 @@ export default function DownloadsPage() {
         <div className="flex flex-col gap-10 animate-in fade-in duration-300">
           
           {/* 2. PRIMARY SPOTLIGHT BENTO CARD */}
-          <BentoCard hover={false} glow={true} brackets={true} className="p-7 md:p-9 flex flex-col md:flex-row items-center justify-between gap-6 border-[#1e3a66] bg-[#0c1322]">
+          <BentoCard hover={false} glow={true} brackets={true} className="p-7 md:p-9 flex flex-col md:flex-row items-center justify-between gap-6 border-[#1b3d22] bg-[#0c1322]">
             <div className="flex items-center gap-5 w-full md:w-auto">
-              <div className="w-16 h-16 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-3xl shrink-0 shadow-lg p-3">
+              <div className="w-16 h-16 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-3xl shrink-0 shadow-lg p-3">
                 <i className={primary.icon}></i>
               </div>
               <div className="flex flex-col text-left flex-1">
@@ -206,7 +206,7 @@ export default function DownloadsPage() {
                   {(selectedVersion || latestClientVersion) && (
                     <StatusBadge
                       label={`v${selectedVersion || latestClientVersion}${primary.target?.build_number ? ` (b${primary.target.build_number})` : (latestClientBuild ? ` (b${latestClientBuild})` : '')}`}
-                      variant="cyan"
+                      variant="neon"
                     />
                   )}
                 </div>
@@ -221,31 +221,31 @@ export default function DownloadsPage() {
                       onClick={() => setSelectedWinFormat('setup')}
                       className={`px-3 py-1 rounded-[2px] text-xs font-mono font-medium transition-all cursor-pointer ${
                         selectedWinFormat === 'setup'
-                          ? 'bg-[#0c182c] text-[#38bdf8] border border-[#1e3a66] shadow-[0_0_8px_rgba(56,189,248,0.2)]'
+                          ? 'bg-[#081a10] text-[#39ff14] border border-[#1b3d22] shadow-[0_0_8px_rgba(57,255,20,0.25)]'
                           : 'text-[#94a3b8] hover:text-[#f8fafc] border border-transparent'
                       }`}
                     >
-                      <i className="fa-solid fa-box mr-1.5 text-xs text-[#38bdf8]"></i> Setup (.exe)
+                      <i className="fa-solid fa-box mr-1.5 text-xs text-[#4ade80]"></i> Setup (.exe)
                     </button>
                     <button
                       onClick={() => setSelectedWinFormat('portable')}
                       className={`px-3 py-1 rounded-[2px] text-xs font-mono font-medium transition-all cursor-pointer ${
                         selectedWinFormat === 'portable'
-                          ? 'bg-[#0c182c] text-[#38bdf8] border border-[#1e3a66] shadow-[0_0_8px_rgba(56,189,248,0.2)]'
+                          ? 'bg-[#081a10] text-[#39ff14] border border-[#1b3d22] shadow-[0_0_8px_rgba(57,255,20,0.25)]'
                           : 'text-[#94a3b8] hover:text-[#f8fafc] border border-transparent'
                       }`}
                     >
-                      <i className="fa-solid fa-bolt mr-1.5 text-xs text-[#38bdf8]"></i> Portable (.exe)
+                      <i className="fa-solid fa-bolt mr-1.5 text-xs text-[#4ade80]"></i> Portable (.exe)
                     </button>
                     <button
                       onClick={() => setSelectedWinFormat('msi')}
                       className={`px-3 py-1 rounded-[2px] text-xs font-mono font-medium transition-all cursor-pointer ${
                         selectedWinFormat === 'msi'
-                          ? 'bg-[#0c182c] text-[#38bdf8] border border-[#1e3a66] shadow-[0_0_8px_rgba(56,189,248,0.2)]'
+                          ? 'bg-[#081a10] text-[#39ff14] border border-[#1b3d22] shadow-[0_0_8px_rgba(57,255,20,0.25)]'
                           : 'text-[#94a3b8] hover:text-[#f8fafc] border border-transparent'
                       }`}
                     >
-                      <i className="fa-solid fa-building mr-1.5 text-xs text-[#38bdf8]"></i> MSI (.msi)
+                      <i className="fa-solid fa-building mr-1.5 text-xs text-[#4ade80]"></i> MSI (.msi)
                     </button>
                   </div>
                 )}
@@ -258,7 +258,7 @@ export default function DownloadsPage() {
                 onClick={() => triggerDownload(primary.target)}
                 className="btn-cyber-primary w-full md:w-auto px-7 py-3 text-xs md:text-sm flex items-center justify-center gap-2.5 cursor-pointer"
               >
-                <i className="fa-solid fa-download text-xs text-[#38bdf8]"></i>
+                <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
                 <span>[ DOWNLOAD {primary.typeLabel.split(' ')[0].toUpperCase()} ]</span>
               </button>
 
@@ -275,7 +275,7 @@ export default function DownloadsPage() {
           {/* 3. ALL PLATFORMS BENTO GRID */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between border-b border-[#1e2e4a] pb-3">
-              <h2 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#38bdf8] flex items-center gap-2">
+              <h2 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#4ade80] flex items-center gap-2">
                 <span className="status-pulse"></span>
                 <span>AVAILABLE TARGET PLATFORMS</span>
               </h2>
@@ -288,7 +288,7 @@ export default function DownloadsPage() {
               <BentoCard span="col-span-1" brackets={true} className="p-6 justify-between gap-4 bg-[#0c1322] border-[#1e2e4a]">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-xl">
+                    <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-xl">
                       <i className="fa-brands fa-windows"></i>
                     </div>
                     <div>
@@ -308,7 +308,7 @@ export default function DownloadsPage() {
                       </div>
                       <button
                         onClick={() => triggerDownload(winSetup)}
-                        className="btn-cyber-ghost px-3 py-1 text-xs"
+                        className="btn-cyber-ghost px-3 py-1 text-xs hover:border-[#22c55e] hover:text-[#4ade80]"
                       >
                         Get .exe
                       </button>
@@ -322,7 +322,7 @@ export default function DownloadsPage() {
                       </div>
                       <button
                         onClick={() => triggerDownload(winPortable)}
-                        className="btn-cyber-ghost px-3 py-1 text-xs"
+                        className="btn-cyber-ghost px-3 py-1 text-xs hover:border-[#22c55e] hover:text-[#4ade80]"
                       >
                         Get .exe
                       </button>
@@ -336,7 +336,7 @@ export default function DownloadsPage() {
                       </div>
                       <button
                         onClick={() => triggerDownload(winMsi)}
-                        className="btn-cyber-ghost px-3 py-1 text-xs"
+                        className="btn-cyber-ghost px-3 py-1 text-xs hover:border-[#22c55e] hover:text-[#4ade80]"
                       >
                         Get .msi
                       </button>
@@ -349,7 +349,7 @@ export default function DownloadsPage() {
               <BentoCard span="col-span-1" brackets={true} className="p-6 justify-between gap-4 bg-[#0c1322] border-[#1e2e4a]">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-xl">
+                    <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-xl">
                       <i className="fa-brands fa-android"></i>
                     </div>
                     <div>
@@ -357,7 +357,7 @@ export default function DownloadsPage() {
                       <span className="text-[11px] font-mono text-[#94a3b8]">ARM64 / APK Sideload</span>
                     </div>
                   </div>
-                  <StatusBadge label="ACTIVE" variant="cyan" />
+                  <StatusBadge label="ACTIVE" variant="neon" />
                 </div>
 
                 <div className="flex flex-col gap-3 pt-3 border-t border-[#1e2e4a]">
@@ -386,7 +386,7 @@ export default function DownloadsPage() {
               <BentoCard span="col-span-1" brackets={true} className="p-6 justify-between gap-4 bg-[#0c1322] border-[#1e2e4a]">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-xl">
+                    <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-xl">
                       <i className="fa-brands fa-linux"></i>
                     </div>
                     <div>
@@ -414,7 +414,7 @@ export default function DownloadsPage() {
                       <span className="text-[#cbd5e1] font-medium">Debian (.deb)</span>
                       <button
                         onClick={() => triggerDownload(latestDeb)}
-                        className="btn-cyber-ghost px-3 py-1 text-xs"
+                        className="btn-cyber-ghost px-3 py-1 text-xs hover:border-[#22c55e] hover:text-[#4ade80]"
                       >
                         Get .deb
                       </button>
@@ -438,10 +438,10 @@ export default function DownloadsPage() {
             <BentoCard hover={false} brackets={true} className="p-0 overflow-hidden bg-[#0c1322] border-[#1e2e4a]">
               <button
                 onClick={() => setShowVerifier(!showVerifier)}
-                className="w-full p-5 flex items-center justify-between text-xs font-mono font-semibold uppercase text-[#38bdf8] hover:text-[#f8fafc] bg-[#08101d] transition-colors cursor-pointer select-none"
+                className="w-full p-5 flex items-center justify-between text-xs font-mono font-semibold uppercase text-[#4ade80] hover:text-[#39ff14] bg-[#08101d] transition-colors cursor-pointer select-none"
               >
                 <span className="flex items-center gap-2.5">
-                  <i className="fa-solid fa-fingerprint text-sm text-[#38bdf8]"></i>
+                  <i className="fa-solid fa-fingerprint text-sm text-[#39ff14]"></i>
                   <span>VERIFY SHA-256 RELEASE CHECKSUM</span>
                 </span>
                 <i className={`fa-solid ${showVerifier ? 'fa-chevron-up' : 'fa-chevron-down'} text-xs text-[#94a3b8]`}></i>
@@ -454,14 +454,14 @@ export default function DownloadsPage() {
                     value={verifyHashInput}
                     onChange={(e) => setVerifyHashInput(e.target.value)}
                     placeholder="Paste SHA-256 hash to verify against release catalog..."
-                    className="w-full bg-[#0c1322] border border-[#1e2e4a] rounded-[2px] p-3.5 font-mono text-xs text-[#f8fafc] focus:outline-none focus:border-[#38bdf8] transition-colors"
+                    className="w-full bg-[#0c1322] border border-[#1e2e4a] rounded-[2px] p-3.5 font-mono text-xs text-[#f8fafc] focus:outline-none focus:border-[#22c55e] placeholder:text-[#64748b]"
                   />
 
                   {verifyHashInput.trim() && (
                     <div>
                       {matchingDownload ? (
-                        <div className="p-3.5 rounded-[2px] bg-[#062016] border border-[#10b981]/50 flex items-center gap-3 text-xs font-mono text-[#34d399]">
-                          <i className="fa-solid fa-circle-check text-base text-[#10b981]"></i>
+                        <div className="p-3.5 rounded-[2px] bg-[#062016] border border-[#22c55e]/50 flex items-center gap-3 text-xs font-mono text-[#39ff14]">
+                          <i className="fa-solid fa-circle-check text-base text-[#22c55e]"></i>
                           <span><strong>CHECKSUM VERIFIED:</strong> Matches official release <strong>{matchingDownload.filename}</strong></span>
                         </div>
                       ) : (
@@ -480,10 +480,10 @@ export default function DownloadsPage() {
             <BentoCard hover={false} brackets={true} className="p-0 overflow-hidden bg-[#0c1322] border-[#1e2e4a]">
               <button
                 onClick={() => setShowArchive(!showArchive)}
-                className="w-full p-5 flex items-center justify-between text-xs font-mono font-semibold uppercase text-[#38bdf8] hover:text-[#f8fafc] bg-[#08101d] transition-colors cursor-pointer select-none"
+                className="w-full p-5 flex items-center justify-between text-xs font-mono font-semibold uppercase text-[#4ade80] hover:text-[#39ff14] bg-[#08101d] transition-colors cursor-pointer select-none"
               >
                 <span className="flex items-center gap-2.5">
-                  <i className="fa-solid fa-clock-rotate-left text-sm text-[#0ea5e9]"></i>
+                  <i className="fa-solid fa-clock-rotate-left text-sm text-[#22c55e]"></i>
                   <span>RELEASE ARCHIVE &amp; HISTORICAL VERSIONS</span>
                 </span>
                 <i className={`fa-solid ${showArchive ? 'fa-chevron-up' : 'fa-chevron-down'} text-xs text-[#94a3b8]`}></i>
@@ -500,7 +500,7 @@ export default function DownloadsPage() {
                           onClick={() => selectReleaseByVersion(v)}
                           className={`px-3 py-1 rounded-[2px] font-mono text-xs uppercase cursor-pointer transition-all ${
                             (selectedVersion || latestClientVersion) === v
-                              ? 'bg-[#0c182c] text-[#38bdf8] border border-[#1e3a66] font-semibold'
+                              ? 'bg-[#081a10] text-[#39ff14] border border-[#1b3d22] font-semibold'
                               : 'bg-[#08101d] text-[#94a3b8] hover:text-[#f8fafc] border border-[#1e2e4a]'
                           }`}
                         >
@@ -518,7 +518,7 @@ export default function DownloadsPage() {
                           className="flex items-center justify-between p-3 rounded-[2px] bg-[#0c1322] border border-[#1e2e4a] text-xs font-mono"
                         >
                           <div className="flex items-center gap-3 truncate">
-                            <span className="text-[#38bdf8] font-semibold">v{dl.version}{dl.build_number ? ` (b${dl.build_number})` : ''}</span>
+                            <span className="text-[#39ff14] font-semibold">v{dl.version}{dl.build_number ? ` (b${dl.build_number})` : ''}</span>
                             <span className="text-[#cbd5e1] truncate">{dl.filename}</span>
                           </div>
                           <div className="flex items-center gap-3 shrink-0">

@@ -55,16 +55,23 @@ export default function FaqPage() {
     {
       id: 7,
       category: 'features',
-      question: 'Are voice and video calls encrypted as well?',
+      question: 'Can I use Vexta across multiple devices?',
       answer:
-        'Yes. Voice and video calls connect peer-to-peer (P2P) directly between devices using WebRTC with real-time end-to-end encryption. Your audio and video streams do not pass through servers when a direct peer connection is established.'
+        'Yes. Vexta includes a cryptographic multi-device pairing system. You can link a secondary desktop or phone by entering an 8-digit verification PIN challenge, and instantly revoke any connected device from your primary client.'
     },
     {
       id: 8,
       category: 'features',
-      question: 'Where are my conversations and media stored?',
+      question: 'Where are my conversations and contact lists stored?',
       answer:
-        'All your chat logs, shared files, and contact lists live strictly on your physical device hardware inside an encrypted vault. There are no corporate cloud backups or remote archives holding your data.'
+        'All your chat logs and contact lists live strictly on your physical device hardware inside an embedded SQLite vault encrypted with Argon2id and AES-256-GCM. There are zero remote cloud backups holding your data.'
+    },
+    {
+      id: 9,
+      category: 'features',
+      question: 'Will Vexta support voice, video, files, and LoRa mesh networking?',
+      answer:
+        'Yes! Voice and video calling, encrypted file/media sharing, voice snippets, and LoRa/Meshtastic off-grid radio networking (allowing communication with zero internet or cell service) are in active development on our engineering roadmap.'
     },
     {
       id: 9,
@@ -114,7 +121,7 @@ export default function FaqPage() {
     <div className="flex flex-col gap-8 py-4 max-w-5xl mx-auto w-full text-[#cbd5e1]">
       {/* 1. Header Hero Bento */}
       <BentoCard hover={false} brackets={true} className="p-8 md:p-12 text-center flex flex-col items-center gap-5 relative overflow-hidden border-[#1e2e4a] bg-[#0c1322]">
-        <div className="w-14 h-14 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-2xl text-[#38bdf8] shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+        <div className="w-14 h-14 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-2xl text-[#39ff14] shadow-[0_0_20px_rgba(34,197,94,0.2)]">
           <i className="fa-solid fa-circle-question"></i>
         </div>
         <SectionHeader
@@ -123,7 +130,7 @@ export default function FaqPage() {
           description="Clear, straightforward answers about how Vexta works, how we protect your confidentiality, and why zero credentials are ever required."
         />
         <div className="flex flex-wrap items-center justify-center gap-3 mt-1">
-          <StatusBadge label="Zero Surveillance" variant="cyan" />
+          <StatusBadge label="Zero Surveillance" variant="neon" />
           <StatusBadge label="Open Architecture" variant="green" />
         </div>
       </BentoCard>
@@ -138,14 +145,14 @@ export default function FaqPage() {
               onClick={() => setActiveCategory(cat.key)}
               className={"px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider rounded-[2px] transition-all cursor-pointer flex items-center gap-2 border " + (
                 activeCategory === cat.key
-                  ? 'bg-[#0c182c] text-[#38bdf8] border-[#1e3a66] shadow-[0_0_10px_rgba(56,189,248,0.15)] font-semibold'
+                  ? 'bg-[#081a10] text-[#39ff14] border-[#1b3d22] shadow-[0_0_10px_rgba(34,197,94,0.18)] font-semibold'
                   : 'bg-[#08101d] text-[#94a3b8] border-[#1e2e4a] hover:text-[#f8fafc] hover:bg-[#0c1322]'
               )}
             >
               <span>{cat.label}</span>
               <span
                 className={"px-1.5 py-0.5 rounded-[2px] text-[10px] " + (
-                  activeCategory === cat.key ? 'bg-[#38bdf8]/20 text-[#38bdf8] font-bold' : 'bg-white/5 text-[#94a3b8]'
+                  activeCategory === cat.key ? 'bg-[#39ff14]/20 text-[#39ff14] font-bold' : 'bg-white/5 text-[#94a3b8]'
                 )}
               >
                 {cat.count}
@@ -165,7 +172,7 @@ export default function FaqPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Filter topics..."
-              className="w-full bg-[#08101d] border border-[#1e2e4a] rounded-[2px] pl-8 pr-8 py-1.5 font-mono text-xs text-[#f8fafc] focus:outline-none focus:border-[#38bdf8] placeholder:text-[#64748b]"
+              className="w-full bg-[#08101d] border border-[#1e2e4a] rounded-[2px] pl-8 pr-8 py-1.5 font-mono text-xs text-[#f8fafc] focus:outline-none focus:border-[#22c55e] placeholder:text-[#64748b]"
             />
             {search && (
               <button
@@ -179,14 +186,14 @@ export default function FaqPage() {
 
           <button
             onClick={expandAll}
-            className="px-3 py-1.5 font-mono text-xs uppercase border border-[#1e2e4a] text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#08101d] rounded-[2px] transition-all shrink-0 cursor-pointer hidden sm:block"
+            className="px-3 py-1.5 font-mono text-xs uppercase border border-[#1e2e4a] text-[#94a3b8] hover:text-[#39ff14] hover:bg-[#08101d] rounded-[2px] transition-all shrink-0 cursor-pointer hidden sm:block"
             title="Expand All Items"
           >
             [ + ]
           </button>
           <button
             onClick={collapseAll}
-            className="px-3 py-1.5 font-mono text-xs uppercase border border-[#1e2e4a] text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#08101d] rounded-[2px] transition-all shrink-0 cursor-pointer hidden sm:block"
+            className="px-3 py-1.5 font-mono text-xs uppercase border border-[#1e2e4a] text-[#94a3b8] hover:text-[#39ff14] hover:bg-[#08101d] rounded-[2px] transition-all shrink-0 cursor-pointer hidden sm:block"
             title="Collapse All Items"
           >
             [ - ]
@@ -203,20 +210,20 @@ export default function FaqPage() {
               <div
                 key={faq.id}
                 className={"rounded-[2px] overflow-hidden border transition-all duration-200 " + (
-                  isOpen ? 'border-[#1e3a66] bg-[#0c182c]/80 shadow-[0_0_15px_rgba(56,189,248,0.1)]' : 'border-[#1e2e4a] bg-[#0c1322] hover:border-[#38bdf8]/50'
+                  isOpen ? 'border-[#1b3d22] bg-[#081a10]/80 shadow-[0_0_15px_rgba(34,197,94,0.1)]' : 'border-[#1e2e4a] bg-[#0c1322] hover:border-[#22c55e]/50'
                 )}
               >
                 <button
                   onClick={() => toggleFaq(faq.id)}
                   className="w-full text-left p-4 md:p-5 flex justify-between items-center gap-4 focus:outline-none cursor-pointer group select-none"
                 >
-                  <span className="text-sm font-semibold text-[#f8fafc] group-hover:text-[#38bdf8] transition-colors flex items-center gap-3">
-                    <span className="text-[#38bdf8] font-mono text-xs">{isOpen ? '>' : '#'}</span>
+                  <span className="text-sm font-semibold text-[#f8fafc] group-hover:text-[#4ade80] transition-colors flex items-center gap-3">
+                    <span className="text-[#39ff14] font-mono text-xs">{isOpen ? '>' : '#'}</span>
                     <span>{faq.question}</span>
                   </span>
                   <span
-                    className={"w-7 h-7 rounded-[2px] bg-[#08101d] border border-[#1e2e4a] flex items-center justify-center text-[#38bdf8] transition-transform duration-200 shrink-0 " + (
-                      isOpen ? 'rotate-180 bg-[#0c182c] border-[#1e3a66]' : ''
+                    className={"w-7 h-7 rounded-[2px] bg-[#08101d] border border-[#1e2e4a] flex items-center justify-center text-[#39ff14] transition-transform duration-200 shrink-0 " + (
+                      isOpen ? 'rotate-180 bg-[#081a10] border-[#1b3d22]' : ''
                     )}
                   >
                     <i className="fa-solid fa-chevron-down text-xs"></i>
@@ -253,7 +260,7 @@ export default function FaqPage() {
       {/* 4. Still Have Questions Banner */}
       <BentoCard brackets={true} className="p-7 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-[#1e2e4a] bg-[#0c1322] shadow-xl">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-lg shrink-0">
+          <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-lg shrink-0">
             <i className="fa-solid fa-book-open"></i>
           </div>
           <div className="flex flex-col gap-1 text-left">

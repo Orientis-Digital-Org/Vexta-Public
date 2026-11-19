@@ -64,20 +64,20 @@ export default function AboutPage() {
         />
 
         <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
-          <StatusBadge label="Zero Surveillance" variant="cyan" />
+          <StatusBadge label="Zero Surveillance" variant="neon" />
           <StatusBadge label="No Phone Numbers" variant="green" />
-          <StatusBadge label="Local Device Vaults" variant="cyan" />
+          <StatusBadge label="Local Device Vaults" variant="neon" />
         </div>
       </BentoCard>
 
       {/* 2. Mission Statement */}
       <BentoCard hover={false} brackets={true} className="p-8 md:p-12 flex flex-col gap-6 border-[#1e2e4a] bg-[#0c1322] leading-relaxed">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-lg">
+          <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-lg">
             <i className="fa-solid fa-quote-left"></i>
           </div>
           <div>
-            <span className="text-xs font-mono uppercase text-[#38bdf8] font-semibold tracking-widest">// CORE PHILOSOPHY</span>
+            <span className="text-xs font-mono uppercase text-[#39ff14] font-semibold tracking-widest">// CORE PHILOSOPHY</span>
             <h2 className="text-xl md:text-2xl font-bold text-[#f8fafc] uppercase font-sans tracking-tight">
               Privacy Is a Human Right, Not a Luxury
             </h2>
@@ -97,7 +97,7 @@ export default function AboutPage() {
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="status-pulse"></span>
-            <span className="text-xs font-mono uppercase text-[#38bdf8] font-semibold tracking-widest">// VULNERABILITY MITIGATION</span>
+            <span className="text-xs font-mono uppercase text-[#39ff14] font-semibold tracking-widest">// VULNERABILITY MITIGATION</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-[#f8fafc] uppercase font-sans tracking-tight">
             Why Modern Messaging Is Broken
@@ -110,7 +110,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {problems.map((item, idx) => (
             <BentoCard key={idx} hover={true} brackets={true} className="p-6 md:p-8 flex flex-col gap-5 border-[#1e2e4a] bg-[#0c1322]">
-              <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-lg shrink-0">
+              <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-lg shrink-0">
                 <i className={item.icon}></i>
               </div>
 
@@ -126,8 +126,8 @@ export default function AboutPage() {
               </div>
 
               {/* Solution Block */}
-              <div className="flex flex-col gap-1.5 p-4 rounded-[2px] bg-[#0c182c] border border-[#1e3a66]">
-                <div className="flex items-center gap-2 text-[#38bdf8] font-mono text-xs font-semibold uppercase tracking-wider">
+              <div className="flex flex-col gap-1.5 p-4 rounded-[2px] bg-[#081a10] border border-[#1b3d22]">
+                <div className="flex items-center gap-2 text-[#4ade80] font-mono text-xs font-semibold uppercase tracking-wider">
                   <i className="fa-solid fa-shield-check"></i>
                   <span>The Vexta Solution: {item.solutionTitle}</span>
                 </div>
@@ -144,7 +144,7 @@ export default function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {pillars.map((pillar, i) => (
           <BentoCard key={i} hover={false} brackets={true} className="p-6 rounded-[2px] border-[#1e2e4a] bg-[#0c1322] flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-base">
+            <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-base">
               <i className={pillar.icon}></i>
             </div>
             <h3 className="text-sm md:text-base font-semibold text-[#f8fafc] uppercase font-mono tracking-wide">
@@ -159,13 +159,13 @@ export default function AboutPage() {
 
       {/* 5. Developer Section: Orientis Digital */}
       <BentoCard hover={false} brackets={true} className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center border-[#1e2e4a] bg-[#0c1322] shadow-2xl">
-        <div className="w-24 h-24 bg-[#0c182c] border border-[#1e3a66] rounded-[3px] flex items-center justify-center overflow-hidden shrink-0 p-4 shadow-lg">
+        <div className="w-24 h-24 bg-[#081a10] border border-[#1b3d22] rounded-[3px] flex items-center justify-center overflow-hidden shrink-0 p-4 shadow-lg">
           <img src="/img/orientis-logo.png" alt="Orientis Digital Logo" className="w-full h-full object-contain" />
         </div>
 
         <div className="flex-1 flex flex-col gap-3.5 text-left">
           <div className="flex items-center gap-2">
-            <StatusBadge label="CORE DEVELOPER" variant="cyan" />
+            <StatusBadge label="CORE DEVELOPER" variant="neon" />
             <span className="text-xs font-mono text-[#94a3b8]">// TACLOBAN REGIONAL HQ</span>
           </div>
 
@@ -220,14 +220,14 @@ export default function AboutPage() {
             to="/downloads"
             className="btn-cyber-primary px-6 py-2.5 text-xs md:text-sm flex items-center gap-2 no-underline"
           >
-            <i className="fa-solid fa-download text-xs text-[#38bdf8]"></i>
+            <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
             <span>[ DOWNLOAD VEXTA ]</span>
           </Link>
           <Link
             to="/docs"
             className="btn-cyber-ghost px-6 py-2.5 text-xs md:text-sm flex items-center gap-2 no-underline"
           >
-            <i className="fa-solid fa-book-open text-xs text-[#38bdf8]"></i>
+            <i className="fa-solid fa-book-open text-xs text-[#4ade80]"></i>
             <span>[ READ PROTOCOL DOCS ]</span>
           </Link>
         </div>

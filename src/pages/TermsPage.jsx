@@ -10,7 +10,7 @@ export default function TermsPage() {
       {/* Header */}
       <BentoCard hover={false} brackets={true} className="text-center p-8 md:p-12 space-y-4 bg-[#0c1322] border-[#1e2e4a]">
         <div className="flex justify-center">
-          <StatusBadge label="TERMS OF USE &amp; PROTOCOL AUP" variant="cyan" />
+          <StatusBadge label="TERMS OF USE &amp; PROTOCOL AUP" variant="green" />
         </div>
         <SectionHeader
           tag="REGULATORY COMPLIANCE"
@@ -23,12 +23,12 @@ export default function TermsPage() {
       </BentoCard>
 
       {/* Warning Callout Box */}
-      <BentoCard hover={false} brackets={true} className="bg-[#0c182c] border-[#1e3a66] p-6 flex items-start gap-4">
-        <div className="p-2.5 rounded-[2px] bg-[#0f1d36] text-[#38bdf8] flex-shrink-0 mt-0.5 border border-[#1e3a66]">
+      <BentoCard hover={false} brackets={true} className="bg-[#081a10] border-[#1b3d22] p-6 flex items-start gap-4">
+        <div className="p-2.5 rounded-[2px] bg-[#0e2416] text-[#39ff14] flex-shrink-0 mt-0.5 border border-[#1b3d22]">
           <i className="fa-solid fa-triangle-exclamation text-base"></i>
         </div>
         <div className="space-y-1.5 text-xs sm:text-sm font-sans">
-          <h3 className="font-mono font-semibold text-[#38bdf8] uppercase tracking-wider">
+          <h3 className="font-mono font-semibold text-[#4ade80] uppercase tracking-wider">
             Decentralized Cryptographic Custody
           </h3>
           <p className="text-[#94a3b8] leading-relaxed">
@@ -41,16 +41,16 @@ export default function TermsPage() {
       <BentoCard hover={false} brackets={true} className="bg-[#0c1322] border-[#1e2e4a] p-6 sm:p-10 space-y-8 font-sans text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
         
         <section className="space-y-3">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 1. ACCEPTANCE &amp; SCOPE
           </h2>
           <p>
-            By downloading, running, compiling, or accessing Vexta applications, relay bridges, or the gateway at <code className="font-mono text-[#38bdf8] text-xs">vexta.orientis.digital</code>, you agree to these Terms of Service.
+            By downloading, running, compiling, or accessing Vexta applications, relay bridges, or the gateway at <code className="font-mono text-[#4ade80] text-xs">vexta.orientis.digital</code>, you agree to these Terms of Service.
           </p>
         </section>
 
         <section className="space-y-3 border-t border-[#1e2e4a] pt-6">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 2. ACCEPTABLE USE POLICY (AUP) FOR RELAY BRIDGES
           </h2>
           <p>
@@ -64,7 +64,7 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-3 border-t border-[#1e2e4a] pt-6">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 3. OPEN-SOURCE MIT LICENSE
           </h2>
           <p>
@@ -76,7 +76,7 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-3 border-t border-[#1e2e4a] pt-6">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 4. TRADEMARKS &amp; BRANDING
           </h2>
           <p>
@@ -85,7 +85,7 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-3 border-t border-[#1e2e4a] pt-6">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 5. LIMITATION OF LIABILITY
           </h2>
           <p>
@@ -94,11 +94,11 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-3 border-t border-[#1e2e4a] pt-6">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 6. GOVERNING LAW
           </h2>
           <p>
-            These terms are governed by the laws of the Republic of the Philippines. Any disputes shall be submitted to the competent courts of Tacloban City, Leyte, Philippines.
+            These terms are governed by the laws of the Republic of the Philippines. Any disputes shall be submitted to the exclusive jurisdiction of the competent courts of Tacloban City, Leyte, Philippines.
           </p>
         </section>
 
@@ -111,7 +111,7 @@ export default function TermsPage() {
           </p>
           <a
             href="mailto:orientisdigital.official@gmail.com"
-            className="text-[#38bdf8] hover:underline inline-block font-mono"
+            className="text-[#39ff14] hover:underline inline-block font-mono"
           >
             orientisdigital.official@gmail.com
           </a>

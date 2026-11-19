@@ -10,7 +10,7 @@ export default function PrivacyPage() {
       {/* Header */}
       <BentoCard hover={false} brackets={true} className="text-center p-8 md:p-12 space-y-4 bg-[#0c1322] border-[#1e2e4a]">
         <div className="flex justify-center">
-          <StatusBadge label="ZERO-KNOWLEDGE ARCHITECTURE" variant="cyan" />
+          <StatusBadge label="ZERO-KNOWLEDGE ARCHITECTURE" variant="green" />
         </div>
         <SectionHeader
           tag="REGULATORY &amp; PRIVACY POLICY"
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       {/* Core Privacy Guarantees Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <BentoCard hover={true} brackets={true} className="bg-[#0c1322] border-[#1e2e4a] p-6 space-y-3">
-          <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8]">
+          <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14]">
             <i className="fa-solid fa-user-slash text-base"></i>
           </div>
           <h3 className="font-mono text-xs font-semibold text-[#f8fafc] uppercase tracking-wider">Zero Account Identity</h3>
@@ -35,7 +35,7 @@ export default function PrivacyPage() {
         </BentoCard>
 
         <BentoCard hover={true} brackets={true} className="bg-[#0c1322] border-[#1e2e4a] p-6 space-y-3">
-          <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8]">
+          <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14]">
             <i className="fa-solid fa-box-archive text-base"></i>
           </div>
           <h3 className="font-mono text-xs font-semibold text-[#f8fafc] uppercase tracking-wider">Blind Ephemeral Relays</h3>
@@ -45,7 +45,7 @@ export default function PrivacyPage() {
         </BentoCard>
 
         <BentoCard hover={true} brackets={true} className="bg-[#0c1322] border-[#1e2e4a] p-6 space-y-3">
-          <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8]">
+          <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14]">
             <i className="fa-solid fa-cookie-bite text-base"></i>
           </div>
           <h3 className="font-mono text-xs font-semibold text-[#f8fafc] uppercase tracking-wider">Zero Tracking Cookies</h3>
@@ -59,19 +59,19 @@ export default function PrivacyPage() {
       <BentoCard hover={false} brackets={true} className="bg-[#0c1322] border-[#1e2e4a] p-6 sm:p-10 space-y-8 font-sans text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
         
         <section className="space-y-3">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 1. SCOPE &amp; PROTOCOL PURPOSE
           </h2>
           <p>
-            This Privacy Policy governs the Vexta sovereign messaging application (Windows, Linux, Android) and its public documentation gateway (<code className="font-mono text-[#38bdf8] text-xs">vexta.orientis.digital</code>), operated by Orientis Digital (&ldquo;Orientis&rdquo;, &ldquo;we&rdquo;).
+            This Privacy Policy governs the Vexta sovereign messaging application (Windows, Linux, Android) and its public documentation gateway (<code className="font-mono text-[#4ade80] text-xs">vexta.orientis.digital</code>), operated by Orientis Digital (&ldquo;Orientis&rdquo;, &ldquo;we&rdquo;).
           </p>
           <p>
-            Vexta operates strictly under an end-to-end encrypted, zero-knowledge architecture. We cannot view message contents, decrypt voice calls, inspect contact rosters, or forge identity keys.
+            Vexta operates strictly under an end-to-end encrypted, zero-knowledge architecture. We cannot view message contents, inspect contact rosters, or forge identity keys.
           </p>
         </section>
 
         <section className="space-y-3 border-t border-[#1e2e4a] pt-6">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 2. INFORMATION PROCESSED &amp; STORED
           </h2>
           <p>
@@ -85,16 +85,16 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-3 border-t border-[#1e2e4a] pt-6">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 3. COOKIES &amp; LOCAL BROWSER STORAGE
           </h2>
           <p>
-            The Vexta public website does not deploy advertising, remarketing, or tracking cookies. If you interact with our documentation, light client-side state (such as UI preferences or dismissed notification banners) may be cached locally in your browser <code className="font-mono text-[#38bdf8] text-xs">localStorage</code> and never transmitted back to any server.
+            The Vexta public website does not deploy advertising, remarketing, or tracking cookies. If you interact with our documentation, light client-side state (such as UI preferences or dismissed notification banners) may be cached locally in your browser <code className="font-mono text-[#4ade80] text-xs">localStorage</code> and never transmitted back to any server.
           </p>
         </section>
 
         <section className="space-y-3 border-t border-[#1e2e4a] pt-6">
-          <h2 className="font-mono text-sm font-semibold text-[#38bdf8] uppercase tracking-wider flex items-center gap-2">
+          <h2 className="font-mono text-sm font-semibold text-[#4ade80] uppercase tracking-wider flex items-center gap-2">
             <span>//</span> 4. STATUTORY RIGHTS (RA 10173, GDPR, CCPA)
           </h2>
           <p>
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
           </p>
           <a
             href="mailto:orientisdigital.official@gmail.com"
-            className="text-[#38bdf8] hover:underline inline-block font-mono"
+            className="text-[#39ff14] hover:underline inline-block font-mono"
           >
             orientisdigital.official@gmail.com
           </a>

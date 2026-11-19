@@ -26,7 +26,7 @@ export default function AnnouncementsPage() {
     <div className="flex flex-col gap-10 py-4 text-[#cbd5e1] min-h-[75vh] w-full">
       {/* Hero Header Bento */}
       <BentoCard hover={false} brackets={true} className="p-8 md:p-12 text-center flex flex-col items-center gap-5 relative overflow-hidden bg-[#0c1322] border-[#1e2e4a]">
-        <div className="w-14 h-14 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-2xl text-[#38bdf8] shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+        <div className="w-14 h-14 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-2xl text-[#39ff14] shadow-[0_0_20px_rgba(34,197,94,0.2)]">
           <i className="fa-solid fa-bullhorn"></i>
         </div>
         <SectionHeader
@@ -39,7 +39,7 @@ export default function AnnouncementsPage() {
       {/* Filter Toolbar Bento */}
       <BentoCard hover={false} brackets={true} className="p-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#0c1322] border-[#1e2e4a]">
         <div className="flex items-center gap-2.5 font-mono text-xs text-[#cbd5e1]">
-          <StatusBadge label="BROADCAST PIPE ACTIVE" variant="cyan" pulse={true} />
+          <StatusBadge label="BROADCAST PIPE ACTIVE" variant="neon" pulse={true} />
           <span className="text-[#94a3b8] font-medium">({announcements.length} Total Dispatches)</span>
         </div>
 
@@ -52,7 +52,7 @@ export default function AnnouncementsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="FILTER BROADCASTS..."
-            className="w-full bg-[#08101d] border border-[#1e2e4a] rounded-[2px] pl-8 pr-8 py-2 font-mono text-xs text-[#f8fafc] focus:outline-none focus:border-[#38bdf8] placeholder:text-[#64748b] uppercase tracking-wider"
+            className="w-full bg-[#08101d] border border-[#1e2e4a] rounded-[2px] pl-8 pr-8 py-2 font-mono text-xs text-[#f8fafc] focus:outline-none focus:border-[#22c55e] placeholder:text-[#64748b] uppercase tracking-wider"
           />
           {search && (
             <button
@@ -76,11 +76,11 @@ export default function AnnouncementsPage() {
             >
               <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono border-b border-[#1e2e4a] pb-3.5">
                 <div className="flex items-center gap-3">
-                  <span className="text-[#38bdf8] font-semibold tracking-wider uppercase flex items-center gap-2 font-mono">
+                  <span className="text-[#39ff14] font-semibold tracking-wider uppercase flex items-center gap-2 font-mono">
                     <i className="fa-solid fa-shield-halved text-xs"></i> [DISPATCH #{announcements.length - idx}]
                   </span>
                   {idx === 0 && (
-                    <StatusBadge label="LATEST RELEASE" variant="cyan" />
+                    <StatusBadge label="LATEST RELEASE" variant="neon" />
                   )}
                 </div>
                 <span className="text-[#94a3b8]">{formatDate(ann.created_at)}</span>
@@ -91,10 +91,10 @@ export default function AnnouncementsPage() {
               </div>
 
               <div className="flex items-center justify-between text-xs font-mono text-[#94a3b8] border-t border-[#1e2e4a] pt-3.5">
-                <span className="flex items-center gap-1.5 text-[#34d399] uppercase font-medium">
+                <span className="flex items-center gap-1.5 text-[#39ff14] uppercase font-medium">
                   <i className="fa-solid fa-circle-check"></i> SIGNATURE AUTHENTICATED
                 </span>
-                <span className="text-[#38bdf8] uppercase font-medium">ED25519 SIGNED</span>
+                <span className="text-[#4ade80] uppercase font-medium">ED25519 SIGNED</span>
               </div>
             </BentoCard>
           ))
@@ -120,12 +120,12 @@ export default function AnnouncementsPage() {
             <span className="text-[10px] uppercase tracking-wider text-[#94a3b8]">// SYNC SOCKET STATUS</span>
             <div className="flex items-center gap-2">
               <span className="status-pulse"></span>
-              <span className="text-xs font-medium text-[#34d399] uppercase">ACTIVE // LISTENING</span>
+              <span className="text-xs font-medium text-[#39ff14] uppercase">ACTIVE // LISTENING</span>
             </div>
           </div>
           <div className="bg-[#08101d] border border-[#1e2e4a] p-4 rounded-[2px] flex flex-col gap-2 font-mono">
             <span className="text-[10px] uppercase tracking-wider text-[#94a3b8]">// RELAY ENCRYPTION</span>
-            <span className="text-xs font-medium text-[#38bdf8] uppercase">Mutual signature auth</span>
+            <span className="text-xs font-medium text-[#4ade80] uppercase">Mutual signature auth</span>
           </div>
           <div className="bg-[#08101d] border border-[#1e2e4a] p-4 rounded-[2px] flex flex-col gap-2 font-mono">
             <span className="text-[10px] uppercase tracking-wider text-[#94a3b8]">// AUDIT MODE</span>
@@ -134,7 +134,7 @@ export default function AnnouncementsPage() {
         </div>
 
         <div className="p-4 border border-[#1e2e4a] bg-[#08101d] text-[#cbd5e1] rounded-[2px] flex gap-3.5 text-xs items-start leading-relaxed font-sans">
-          <span className="text-base text-[#38bdf8] shrink-0 mt-0.5">
+          <span className="text-base text-[#39ff14] shrink-0 mt-0.5">
             <i className="fa-solid fa-circle-info"></i>
           </span>
           <div>

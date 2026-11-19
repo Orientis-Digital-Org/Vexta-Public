@@ -11,10 +11,10 @@ export default function BentoCard({
   id
 }) {
   const hoverClass = hover 
-    ? 'hover:border-[#2563eb] hover:bg-[#0f1d36]/90 hover:shadow-[0_0_20px_rgba(56,189,248,0.08)] transition-all duration-300 cursor-default' 
+    ? 'hover:border-[#22c55e] hover:bg-[#0f1d36]/90 hover:shadow-[0_0_20px_rgba(34,197,94,0.1)] transition-all duration-300 cursor-default' 
     : '';
   const glowClass = glow 
-    ? 'shadow-[0_0_30px_rgba(56,189,248,0.15)] border-[#38bdf8]/50' 
+    ? 'shadow-[0_0_30px_rgba(34,197,94,0.18)] border-[#22c55e]/50' 
     : 'border-[#1e2e4a]';
   const bracketClass = brackets ? 'hud-corner-bracket' : '';
   const clickableClass = onClick ? 'cursor-pointer select-none active:scale-[0.99]' : '';

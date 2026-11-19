@@ -12,7 +12,7 @@ export default function SectionHeader({
   return (
     <div className={`flex flex-col gap-3 max-w-3xl ${align === 'center' ? 'mx-auto' : ''} ${alignmentClass} ${className}`}>
       {tag && (
-        <span className="text-[#38bdf8] text-xs md:text-sm font-semibold uppercase tracking-widest font-mono flex items-center gap-2">
+        <span className="text-[#22c55e] text-xs md:text-sm font-semibold uppercase tracking-widest font-mono flex items-center gap-2">
           <span className="status-pulse"></span>
           <span>// {tag}</span>
         </span>
