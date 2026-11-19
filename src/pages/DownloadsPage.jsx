@@ -72,7 +72,7 @@ export default function DownloadsPage() {
       downloadFilename = `${downloadFilename}.apk`;
     }
 
-    const base = downloadApiBaseUrl || 'https://downloads.nexusec.space';
+    const base = downloadApiBaseUrl || 'https://downloads.orientis.digital';
     // For direct binary downloads, especially APKs on Android, point directly to the static file path
     // ending with the extension. This prevents Android DownloadManager from deriving "api.zip"
     // from an API redirect URL path segment (/api/v1/apps/...).

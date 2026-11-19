@@ -21,7 +21,7 @@ The following marks are proprietary trademarks and service marks of **Orientis D
 
 * **Word Marks**: `Vexta`, `Vexta Messenger`, `Vexta Bridge`, `Vexta Relay`, `Orientis`, `Orientis Digital`.
 * **Logos & Icons**: The official Vexta shield/lock geometric logo, Orientis Digital logo, application icons, and badge artwork.
-* **Official Domains & Endpoints**: `*.nexusec.space`, `*.orientis.digital`, `vexta-api.nexusec.space`, `downloads.nexusec.space`.
+* **Official Domains & Endpoints**: `*.orientis.digital`, `vexta-api.orientis.digital`, `downloads.orientis.digital`.
 
 ---
 
@@ -36,7 +36,7 @@ You may use the Vexta word marks without prior written permission in the followi
   * **Not Allowed**: *"Official Vexta Pro Client"* or *"Vexta Mobile Enterprise"*.
 
 ### ✅ B. Linking & Community Promotion
-* You may use the Vexta name and official unmodified logo to link directly to official Vexta repositories, documentation, or download portals (`https://downloads.nexusec.space`).
+* You may use the Vexta name and official unmodified logo to link directly to official Vexta repositories, documentation, or download portals (`https://downloads.orientis.digital`).
 
 ### ✅ C. Research, Auditing & News
 * You may reference Vexta in articles, academic publications, security audit reports, and reviews.
@@ -64,7 +64,7 @@ If you modify the source code (including but not limited to changing cryptograph
 ## 5. Domain & Official Relay Infrastructure Guidelines
 
 * **Domain Registration**: You may not register domain names containing `vexta` or `orientis` as part of a commercial service or misleading community portal (e.g., `vexta-download.com`, `official-vexta.org`).
-* **Official Relay Usage**: Third-party applications, bots, and forks are not entitled to consume bandwidth on official production relays (`vexta-api.nexusec.space`, `downloads.nexusec.space`) without authorization. Independent relay operators must configure and host their own bridges.
+* **Official Relay Usage**: Third-party applications, bots, and forks are not entitled to consume bandwidth on official production relays (`vexta-api.orientis.digital`, `downloads.orientis.digital`) without authorization. Independent relay operators must configure and host their own bridges.
 
 ---
 
@@ -86,5 +86,5 @@ If you modify the source code (including but not limited to changing cryptograph
 If you would like to request permission for trademark use outside these guidelines, or to report unauthorized trademark misuse, please contact:
 
 **Orientis Digital Legal & Trademark Team**  
-* Website: [https://nexusec.space](https://nexusec.space)  
-* Email: `contact@nexusec.space` (or via official repository issue trackers)
+* Website: [https://orientis.digital](https://orientis.digital)  
+* Email: `contact@orientis.digital` (or via official repository issue trackers)

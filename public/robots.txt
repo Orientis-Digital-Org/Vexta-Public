@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vexta.nexusec.space/sitemap.xml
+Sitemap: https://vexta.orientis.digital/sitemap.xml

@@ -332,7 +332,7 @@ export default function DocsPage() {
               <p className="text-xs md:text-sm text-gray-300">
                 Upon WebSocket connection, the bridge and client authenticate mutually without passwords:
               </p>
-              <CopyPill label="Default WebSocket Relay Gateway" text="wss://vexta-api.nexusec.space/ws/chat/" />
+              <CopyPill label="Default WebSocket Relay Gateway" text="wss://vexta-api.orientis.digital/ws/chat/" />
               <p className="text-xs text-gray-400">
                 The server issues a 32-byte CSPRNG challenge nonce signed by the server's Ed25519 key. The client verifies the server signature, then signs the nonce with its local Ed25519 private key to authorize the socket session.
               </p>

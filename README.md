@@ -6,7 +6,7 @@
 
 ## 🌐 Overview
 
-`vexta-public` is the public-facing web portal for **Vexta Protocol**, providing product showcases, technical documentation, announcement feeds, and live build download mirrors (`https://downloads.nexusec.space`).
+`vexta-public` is the public-facing web portal for **Vexta Protocol**, providing product showcases, technical documentation, announcement feeds, and live build download mirrors (`https://downloads.orientis.digital`).
 
 ---
 

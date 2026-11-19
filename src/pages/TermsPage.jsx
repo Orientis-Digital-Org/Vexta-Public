@@ -44,7 +44,7 @@ export default function TermsPage() {
             <span>//</span> 1. ACCEPTANCE &amp; SCOPE
           </h2>
           <p>
-            By downloading, running, compiling, or accessing Vexta applications, relay bridges, or the website at <code className="font-mono text-[#39FF14] text-xs">vexta.nexusec.space</code>, you agree to these Terms of Service.
+            By downloading, running, compiling, or accessing Vexta applications, relay bridges, or the website at <code className="font-mono text-[#39FF14] text-xs">vexta.orientis.digital</code>, you agree to these Terms of Service.
           </p>
         </section>
 

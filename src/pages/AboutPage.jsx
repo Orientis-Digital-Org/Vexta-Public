@@ -195,7 +195,7 @@ export default function AboutPage() {
             </div>
 
             <a
-              href="https://nexusec.space/"
+              href="https://orientis.digital/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-xl font-mono text-xs md:text-sm font-bold uppercase bg-[#22C55E] text-black hover:bg-[#39FF14] transition-all no-underline flex items-center gap-2"

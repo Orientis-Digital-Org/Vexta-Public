@@ -7,11 +7,11 @@ const getApiBase = () => {
   if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
     return 'http://localhost:8000';
   }
-  return 'https://vexta-api.nexusec.space';
+  return 'https://vexta-api.orientis.digital';
 };
 
 const API_BASE = getApiBase();
-const DOWNLOAD_API_BASE = (import.meta.env.VITE_DOWNLOAD_API_URL || 'https://downloads.nexusec.space').replace(/\/$/, '');
+const DOWNLOAD_API_BASE = (import.meta.env.VITE_DOWNLOAD_API_URL || 'https://downloads.orientis.digital').replace(/\/$/, '');
 
 const DEFAULT_ANNOUNCEMENT = {
   id: 'dispatch-v0.0.10',

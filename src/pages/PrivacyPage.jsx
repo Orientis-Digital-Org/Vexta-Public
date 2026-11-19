@@ -62,7 +62,7 @@ export default function PrivacyPage() {
             <span>//</span> 1. SCOPE &amp; PROTOCOL PURPOSE
           </h2>
           <p>
-            This Privacy Policy governs the Vexta sovereign messaging application (Windows, Linux, Android) and its public documentation gateway (<code className="font-mono text-[#39FF14] text-xs">vexta.nexusec.space</code>), operated by Orientis Digital (&ldquo;Orientis&rdquo;, &ldquo;we&rdquo;).
+            This Privacy Policy governs the Vexta sovereign messaging application (Windows, Linux, Android) and its public documentation gateway (<code className="font-mono text-[#39FF14] text-xs">vexta.orientis.digital</code>), operated by Orientis Digital (&ldquo;Orientis&rdquo;, &ldquo;we&rdquo;).
           </p>
           <p>
             Vexta operates strictly under an end-to-end encrypted, zero-knowledge architecture. We cannot view message contents, decrypt voice calls, inspect contact rosters, or forge identity keys.
