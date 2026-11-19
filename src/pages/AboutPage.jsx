@@ -10,7 +10,7 @@ export default function AboutPage() {
       problemTitle: 'Phone Number & Identity Demands',
       problemDesc: 'Mainstream messaging apps force you to surrender your personal phone number, upload your address book, and tie your digital self to your physical real-world identity.',
       solutionTitle: 'Complete Pseudonymous Freedom',
-      solutionDesc: 'Vexta asks for zero personal credentials. No phone number, no email address, and no SMS codes. You pick a display name and start talking immediately.'
+      solutionDesc: 'Vexta asks for zero personal credentials. No phone number, no email address, and no SMS codes. You pick a display name and start communicating immediately.'
     },
     {
       icon: 'fa-solid fa-cloud-arrow-up',
@@ -24,7 +24,7 @@ export default function AboutPage() {
       problemTitle: 'Metadata Harvesting & Ad Profiling',
       problemDesc: 'Tech corporations track who you message, what time you talk, your location, and how often you connect, packaging your social circle into an advertising profile.',
       solutionTitle: 'Blind Envelope Delivery',
-      solutionDesc: 'Vexta relay servers work like blind postal couriers. They pass sealed digital envelopes from one device to another and immediately erase them from memory.'
+      solutionDesc: 'Vexta relay servers work like blind postal couriers. They pass sealed digital envelopes from one device to another and immediately erase them from volatile memory.'
     },
     {
       icon: 'fa-solid fa-user-slash',
@@ -38,8 +38,8 @@ export default function AboutPage() {
   const pillars = [
     {
       icon: 'fa-solid fa-hand-holding-heart',
-      title: 'Human-First Design',
-      desc: 'Privacy should not require a computer science degree. Vexta provides enterprise-grade protection with a clean, modern interface anyone can enjoy.'
+      title: 'Human-First Engineering',
+      desc: 'Privacy should not require a computer science degree. Vexta provides enterprise-grade protection with a crisp, modern console interface anyone can navigate.'
     },
     {
       icon: 'fa-solid fa-ban',
@@ -49,89 +49,89 @@ export default function AboutPage() {
     {
       icon: 'fa-solid fa-earth-americas',
       title: 'Cross-Platform Freedom',
-      desc: 'Seamlessly connect with your inner circle across Windows, Linux, and Android devices without being forced into a single hardware ecosystem.'
+      desc: 'Seamlessly connect with your inner circle across Windows, Linux, and Android devices without being forced into a single hardware walled garden.'
     }
   ];
 
   return (
     <div className="flex flex-col gap-8 py-4 max-w-5xl mx-auto w-full">
       {/* 1. Page Header */}
-      <BentoCard hover={false} className="p-8 md:p-12 flex flex-col items-center text-center gap-6 border-[#243022] bg-[#0E120D]">
+      <BentoCard hover={false} brackets={true} className="p-8 md:p-12 flex flex-col items-center text-center gap-6 border-[#1e2e4a] bg-[#0c1322]">
         <SectionHeader
-          tag="// ABOUT VEXTA"
+          tag="MISSION STATEMENT"
           title="The Story Behind Vexta"
           description="Why we built an uncompromising communication tool designed to return privacy, dignity, and autonomy back to people."
         />
 
         <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
-          <StatusBadge label="Zero Surveillance" variant="neon" />
+          <StatusBadge label="Zero Surveillance" variant="cyan" />
           <StatusBadge label="No Phone Numbers" variant="green" />
-          <StatusBadge label="Local Device Vaults" variant="neon" />
+          <StatusBadge label="Local Device Vaults" variant="cyan" />
         </div>
       </BentoCard>
 
       {/* 2. Mission Statement */}
-      <BentoCard hover={false} className="p-8 md:p-12 flex flex-col gap-6 border-[#243022] leading-relaxed">
+      <BentoCard hover={false} brackets={true} className="p-8 md:p-12 flex flex-col gap-6 border-[#1e2e4a] bg-[#0c1322] leading-relaxed">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-xl">
+          <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-lg">
             <i className="fa-solid fa-quote-left"></i>
           </div>
           <div>
-            <span className="text-xs font-mono uppercase text-[#39FF14] font-bold tracking-widest">// OUR CORE MISSION</span>
-            <h2 className="text-xl md:text-2xl font-bold text-white uppercase font-mono tracking-wide">
+            <span className="text-xs font-mono uppercase text-[#38bdf8] font-semibold tracking-widest">// CORE PHILOSOPHY</span>
+            <h2 className="text-xl md:text-2xl font-bold text-[#f8fafc] uppercase font-sans tracking-tight">
               Privacy Is a Human Right, Not a Luxury
             </h2>
           </div>
         </div>
 
-        <p className="text-sm md:text-base text-gray-200 leading-relaxed font-sans">
-          In an era where every message, relationship, and conversation is monetized, logged, and fed into surveillance algorithms, <strong className="text-white">Vexta</strong> was created as a refusal to accept that status quo.
+        <p className="text-sm md:text-base text-[#cbd5e1] leading-relaxed font-sans">
+          In an era where every message, relationship, and conversation is monetized, logged, and fed into surveillance algorithms, <strong className="text-[#f8fafc]">Vexta</strong> was created as a refusal to accept that status quo.
         </p>
-        <p className="text-sm md:text-base text-gray-300 leading-relaxed font-sans">
+        <p className="text-sm md:text-base text-[#94a3b8] leading-relaxed font-sans">
           We believe that private conversations should remain just that—private. What you discuss with your family, friends, colleagues, and collaborators belongs solely to you, free from corporate middlemen, data brokers, and eavesdropping.
         </p>
       </BentoCard>
 
-      {/* 3. Problems Vexta Tries to Solve */}
+      {/* 3. Problems Vexta Solves */}
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <span className="inline-block w-2.5 h-2.5 bg-[#39FF14] rounded-full"></span>
-            <span className="text-xs font-mono uppercase text-[#39FF14] font-bold tracking-widest">// THE PROBLEMS WE SOLVE</span>
+            <span className="status-pulse"></span>
+            <span className="text-xs font-mono uppercase text-[#38bdf8] font-semibold tracking-widest">// VULNERABILITY MITIGATION</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white uppercase font-mono tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#f8fafc] uppercase font-sans tracking-tight">
             Why Modern Messaging Is Broken
           </h2>
-          <p className="text-xs md:text-sm text-gray-400">
-            How mainstream communication tools compromise your personal autonomy, and how Vexta fixes each issue.
+          <p className="text-xs md:text-sm text-[#94a3b8]">
+            How mainstream communication platforms compromise personal autonomy, and how Vexta addresses each threat vector.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {problems.map((item, idx) => (
-            <BentoCard key={idx} hover={true} className="p-6 md:p-8 flex flex-col gap-5 border-[#243022] bg-[#0E120D]">
-              <div className="w-12 h-12 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-xl shrink-0">
+            <BentoCard key={idx} hover={true} brackets={true} className="p-6 md:p-8 flex flex-col gap-5 border-[#1e2e4a] bg-[#0c1322]">
+              <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-lg shrink-0">
                 <i className={item.icon}></i>
               </div>
 
               {/* Problem Block */}
-              <div className="flex flex-col gap-1.5 p-4 rounded-xl bg-red-950/20 border border-red-900/30">
-                <div className="flex items-center gap-2 text-red-400 font-mono text-xs font-bold uppercase tracking-wider">
+              <div className="flex flex-col gap-1.5 p-4 rounded-[2px] bg-[#2b0d0d]/30 border border-[#ef4444]/30">
+                <div className="flex items-center gap-2 text-[#f87171] font-mono text-xs font-semibold uppercase tracking-wider">
                   <i className="fa-solid fa-triangle-exclamation"></i>
                   <span>The Problem: {item.problemTitle}</span>
                 </div>
-                <p className="text-xs text-gray-300 leading-relaxed">
+                <p className="text-xs text-[#94a3b8] leading-relaxed">
                   {item.problemDesc}
                 </p>
               </div>
 
               {/* Solution Block */}
-              <div className="flex flex-col gap-1.5 p-4 rounded-xl bg-[#141C13] border border-[#22C55E]/30">
-                <div className="flex items-center gap-2 text-[#39FF14] font-mono text-xs font-bold uppercase tracking-wider">
+              <div className="flex flex-col gap-1.5 p-4 rounded-[2px] bg-[#0c182c] border border-[#1e3a66]">
+                <div className="flex items-center gap-2 text-[#38bdf8] font-mono text-xs font-semibold uppercase tracking-wider">
                   <i className="fa-solid fa-shield-check"></i>
                   <span>The Vexta Solution: {item.solutionTitle}</span>
                 </div>
-                <p className="text-xs text-gray-200 leading-relaxed">
+                <p className="text-xs text-[#cbd5e1] leading-relaxed">
                   {item.solutionDesc}
                 </p>
               </div>
@@ -143,14 +143,14 @@ export default function AboutPage() {
       {/* 4. Three Pillars of Experience */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {pillars.map((pillar, i) => (
-          <BentoCard key={i} hover={false} className="p-6 rounded-2xl border-[#243022] bg-[#060805] flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-lg">
+          <BentoCard key={i} hover={false} brackets={true} className="p-6 rounded-[2px] border-[#1e2e4a] bg-[#0c1322] flex flex-col gap-3">
+            <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-base">
               <i className={pillar.icon}></i>
             </div>
-            <h3 className="text-base font-bold text-white uppercase font-mono tracking-wide">
+            <h3 className="text-sm md:text-base font-semibold text-[#f8fafc] uppercase font-mono tracking-wide">
               {pillar.title}
             </h3>
-            <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+            <p className="text-xs md:text-sm text-[#94a3b8] leading-relaxed font-sans">
               {pillar.desc}
             </p>
           </BentoCard>
@@ -158,38 +158,38 @@ export default function AboutPage() {
       </div>
 
       {/* 5. Developer Section: Orientis Digital */}
-      <BentoCard hover={false} className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center border-[#243022] bg-[#0E120D] shadow-2xl">
-        <div className="w-28 h-28 bg-[#22C55E]/10 border border-[#22C55E]/30 rounded-2xl flex items-center justify-center overflow-hidden shrink-0 p-5 shadow-lg">
+      <BentoCard hover={false} brackets={true} className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center border-[#1e2e4a] bg-[#0c1322] shadow-2xl">
+        <div className="w-24 h-24 bg-[#0c182c] border border-[#1e3a66] rounded-[3px] flex items-center justify-center overflow-hidden shrink-0 p-4 shadow-lg">
           <img src="/img/orientis-logo.png" alt="Orientis Digital Logo" className="w-full h-full object-contain" />
         </div>
 
         <div className="flex-1 flex flex-col gap-3.5 text-left">
           <div className="flex items-center gap-2">
-            <StatusBadge label="// CORE DEVELOPER" variant="neon" />
-            <span className="text-xs font-mono text-gray-400">Software Studio</span>
+            <StatusBadge label="CORE DEVELOPER" variant="cyan" />
+            <span className="text-xs font-mono text-[#94a3b8]">// TACLOBAN REGIONAL HQ</span>
           </div>
 
-          <h3 className="font-extrabold text-white text-xl md:text-2xl uppercase tracking-wider font-mono">
+          <h3 className="font-bold text-[#f8fafc] text-xl md:text-2xl uppercase tracking-wider font-sans">
             Engineered by Orientis Digital
           </h3>
 
-          <p className="leading-relaxed font-sans text-xs md:text-sm text-gray-300">
-            Orientis Digital is an independent engineering team passionate about creating resilient communication tools, modern digital infrastructure, and sovereign software systems.
+          <p className="leading-relaxed font-sans text-xs md:text-sm text-[#cbd5e1]">
+            Orientis Digital is an independent engineering firm passionate about building resilient communication systems, sovereign digital infrastructure, and privacy-preserving applications in Eastern Visayas.
           </p>
 
-          <p className="leading-relaxed font-sans text-xs md:text-sm text-gray-400">
-            We build software with a fundamental principle: technology should empower the individual, not surveil them. Vexta is developed openly, ethically, and without venture capital surveillance incentives.
+          <p className="leading-relaxed font-sans text-xs md:text-sm text-[#94a3b8]">
+            We build software with a fundamental principle: technology should empower the individual, not surveil them. Vexta is developed openly, ethically, and without surveillance incentives.
           </p>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 mt-2 pt-4 border-t border-[#243022]">
+          <div className="flex flex-wrap items-center justify-between gap-4 mt-2 pt-4 border-t border-[#1e2e4a]">
             <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-              <span className="bg-[#060805] border border-[#243022] px-3 py-1.5 rounded-lg text-gray-300">
+              <span className="bg-[#08101d] border border-[#1e2e4a] px-3 py-1.5 rounded-[2px] text-[#94a3b8]">
                 Independent Engineering
               </span>
-              <span className="bg-[#060805] border border-[#243022] px-3 py-1.5 rounded-lg text-gray-300">
+              <span className="bg-[#08101d] border border-[#1e2e4a] px-3 py-1.5 rounded-[2px] text-[#94a3b8]">
                 Open Protocols
               </span>
-              <span className="bg-[#060805] border border-[#243022] px-3 py-1.5 rounded-lg text-[#39FF14]">
+              <span className="bg-[#08101d] border border-[#1e2e4a] px-3 py-1.5 rounded-[2px] text-[#34d399]">
                 100% Zero-Tracking
               </span>
             </div>
@@ -198,37 +198,37 @@ export default function AboutPage() {
               href="https://orientis.digital/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-xl font-mono text-xs md:text-sm font-bold uppercase bg-[#22C55E] text-black hover:bg-[#39FF14] transition-all no-underline flex items-center gap-2"
+              className="btn-cyber-primary text-xs py-2 px-4 no-underline inline-flex items-center gap-2"
             >
-              <span>Visit Orientis Digital</span>
-              <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              <span>[ VISIT ORIENTIS DIGITAL ]</span>
+              <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
         </div>
       </BentoCard>
 
       {/* 6. Ready to Join Banner */}
-      <BentoCard hover={false} className="p-8 md:p-10 flex flex-col items-center text-center gap-4 border-[#243022] bg-[#060805]">
-        <h3 className="text-xl md:text-2xl font-extrabold text-white uppercase font-mono">
-          Ready to Take Back Your Conversations?
+      <BentoCard hover={false} brackets={true} className="p-8 md:p-10 flex flex-col items-center text-center gap-4 border-[#1e2e4a] bg-[#08101d]">
+        <h3 className="text-xl md:text-2xl font-bold text-[#f8fafc] uppercase font-sans">
+          Ready to Take Back Your Communications?
         </h3>
-        <p className="text-xs md:text-sm text-gray-300 max-w-lg">
-          Download Vexta today. Setup takes less than 30 seconds with no personal details required.
+        <p className="text-xs md:text-sm text-[#94a3b8] max-w-lg">
+          Download Vexta today. Setup takes less than 30 seconds with no personal credentials required.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
             to="/downloads"
-            className="px-6 py-3 rounded-xl font-mono text-xs md:text-sm font-bold uppercase bg-[#22C55E] text-black hover:bg-[#39FF14] transition-all no-underline flex items-center gap-2"
+            className="btn-cyber-primary px-6 py-2.5 text-xs md:text-sm flex items-center gap-2 no-underline"
           >
-            <i className="fa-solid fa-download"></i>
-            <span>Download Vexta Free</span>
+            <i className="fa-solid fa-download text-xs text-[#38bdf8]"></i>
+            <span>[ DOWNLOAD VEXTA ]</span>
           </Link>
           <Link
             to="/docs"
-            className="px-6 py-3 rounded-xl font-mono text-xs md:text-sm font-bold uppercase bg-[#141C13] border border-[#243022] text-gray-200 hover:text-white hover:border-[#22C55E]/40 transition-all no-underline flex items-center gap-2"
+            className="btn-cyber-ghost px-6 py-2.5 text-xs md:text-sm flex items-center gap-2 no-underline"
           >
-            <i className="fa-solid fa-book-open"></i>
-            <span>Read User Guide</span>
+            <i className="fa-solid fa-book-open text-xs text-[#38bdf8]"></i>
+            <span>[ READ PROTOCOL DOCS ]</span>
           </Link>
         </div>
       </BentoCard>

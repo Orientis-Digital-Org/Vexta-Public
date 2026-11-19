@@ -21,20 +21,24 @@ export default function CopyPill({
       onClick={handleCopy}
       type="button"
       title="Click to copy to clipboard"
-      className={`group flex items-center justify-between gap-3 px-4 py-2.5 bg-[#060805] border border-[#243022] hover:border-[#22C55E]/60 hover:bg-[#0E140C] rounded-xl font-mono text-xs md:text-sm text-gray-200 transition-all cursor-pointer select-none text-left ${className}`}
+      className={`group flex items-center justify-between gap-3 px-4 py-2.5 bg-[#08101d] border border-[#1e2e4a] hover:border-[#38bdf8] hover:bg-[#0c182c] rounded-[2px] font-mono text-xs md:text-sm text-[#cbd5e1] transition-all cursor-pointer select-none text-left ${className}`}
     >
       <div className="flex flex-col min-w-0">
         {label && (
-          <span className="text-[11px] uppercase tracking-wider text-[#7E927F] font-bold block mb-0.5">
-            {label}
+          <span className="text-[10px] uppercase tracking-wider text-[#94a3b8] font-bold block mb-0.5">
+            // {label}
           </span>
         )}
-        <span className={`text-gray-100 group-hover:text-white ${truncate ? 'truncate' : 'break-all'}`}>
+        <span className={`text-[#f8fafc] group-hover:text-[#38bdf8] ${truncate ? 'truncate' : 'break-all'}`}>
           {displayValue || text}
         </span>
       </div>
-      <div className="flex items-center gap-1.5 shrink-0 px-2.5 py-1.5 rounded-lg bg-[#141C13] border border-[#243022] group-hover:border-[#22C55E]/40 text-xs uppercase font-bold text-[#4ADE80]">
-        <i className={`fa-solid ${copied ? 'fa-check text-[#39FF14]' : 'fa-copy text-[#22C55E]'}`}></i>
+      <div className={`flex items-center gap-1.5 shrink-0 px-2.5 py-1.5 rounded-[2px] border text-xs font-mono font-medium transition-colors ${
+        copied 
+          ? 'bg-[#062016] border-[#10b981]/50 text-[#34d399]' 
+          : 'bg-[#0c182c] border-[#1e3a66] group-hover:border-[#38bdf8]/60 text-[#38bdf8]'
+      }`}>
+        <i className={`fa-solid ${copied ? 'fa-check text-[#34d399]' : 'fa-copy text-[#38bdf8]'}`}></i>
         <span>{copied ? 'COPIED' : 'COPY'}</span>
       </div>
     </button>

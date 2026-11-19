@@ -18,16 +18,16 @@ export default function App() {
   return (
     <AppProvider>
       <Router>
-        <div className="min-h-screen flex flex-col text-gray-200 antialiased overflow-x-hidden selection:bg-[#22C55E] selection:text-black grid-bg relative">
-          {/* Background Ambient Cyber Glows */}
-          <div className="fixed top-1/4 left-1/4 w-[600px] h-[600px] bg-[#22C55E]/4 rounded-full blur-[150px] pointer-events-none z-[-1] animate-[pulse_8s_ease-in-out_infinite]"></div>
-          <div className="fixed bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#39FF14]/3 rounded-full blur-[140px] pointer-events-none z-[-1]"></div>
+        <div className="min-h-screen flex flex-col text-[#cbd5e1] font-sans antialiased overflow-x-hidden selection:bg-[#38bdf8] selection:text-[#070b12] bg-[#070b12] bg-cyber-grid relative">
+          {/* Ambient Cyber Blue Glows */}
+          <div className="fixed top-1/4 left-1/4 w-[600px] h-[600px] bg-[#38bdf8]/4 rounded-full blur-[160px] pointer-events-none z-[-1] animate-[pulse_8s_ease-in-out_infinite]"></div>
+          <div className="fixed bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#0ea5e9]/4 rounded-full blur-[140px] pointer-events-none z-[-1]"></div>
 
           {/* Navigation Bar */}
           <Navbar />
 
           {/* Main Content Area */}
-          <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 z-10">
+          <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-28 pb-20 z-10">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/docs" element={<DocsPage />} />

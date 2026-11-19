@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation, Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-    const location = useLocation();
+  const location = useLocation();
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -13,78 +28,90 @@ export default function Navbar() {
     { name: 'FAQ', path: '/faq' }
   ];
 
+  const linkBaseStyle =
+    "text-[13px] font-mono tracking-wider transition-all py-1.5 px-3 rounded-[2px] flex items-center gap-1.5 uppercase cursor-pointer select-none";
+  const activeStyle = `${linkBaseStyle} text-[#38bdf8] bg-[#0c182c]/80 border border-[#1e3a66] shadow-[0_0_12px_rgba(56,189,248,0.2)] font-semibold`;
+  const inactiveStyle = `${linkBaseStyle} text-[#94a3b8] hover:text-[#38bdf8] hover:bg-[#0c1322] border border-transparent`;
+
   return (
     <>
-      <header className="h-[80px] fixed top-4 inset-x-4 sm:inset-x-6 lg:inset-x-8 max-w-7xl mx-auto z-[999] solid-panel bg-[#0E120D]/95 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.85)] border border-[#243022]">
-        <div className="flex justify-between items-center h-full relative w-full px-5 md:px-7">
-          {/* Logo Branding */}
-          <NavLink to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3.5 no-underline group cursor-pointer">
-            <div className="relative w-11 h-11 border border-[#22C55E]/40 rounded-xl flex items-center justify-center bg-[#22C55E]/10 shadow-[0_0_15px_rgba(34,197,94,0.2)] group-hover:shadow-[0_0_25px_rgba(57,255,20,0.45)] group-hover:border-[#39FF14] transition-all duration-300 select-none p-1.5 overflow-hidden">
-              <img src="/img/vexta-logo.png" alt="Vexta Logo" className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-105" />
-              {/* Live Status Dot */}
-              <span className="absolute bottom-0.5 right-0.5 flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39FF14] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#39FF14]"></span>
-              </span>
+      <header className="h-[64px] fixed top-0 left-0 right-0 w-full z-[999] bg-[#070b12]/95 backdrop-blur-md border-b border-[#1e2e4a]">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl flex justify-between items-center h-full">
+          {/* Brand Logo / Wordmark */}
+          <Link
+            to="/"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center gap-3 no-underline group cursor-pointer select-none min-w-0"
+          >
+            <div className="relative w-9 h-9 border border-[#1e3a66] rounded-[3px] flex items-center justify-center bg-[#0c182c] shadow-[0_0_12px_rgba(56,189,248,0.2)] group-hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] group-hover:border-[#38bdf8] transition-all duration-300 p-1 overflow-hidden shrink-0">
+              <img src="/img/vexta-logo.png" alt="Vexta Logo" className="w-full h-full object-contain rounded-[2px] transition-transform duration-300 group-hover:scale-105" />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#38bdf8] shadow-[0_0_6px_#38bdf8]"></span>
             </div>
-            <div className="flex flex-col justify-center">
-              <div className="flex items-center gap-1">
-                <span className="font-sans text-base md:text-lg font-extrabold text-neon-gradient tracking-tight leading-none uppercase">
-                  Vexta
+            <div className="flex flex-col justify-center min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="font-mono text-sm sm:text-base font-bold text-[#f8fafc] tracking-[0.14em] uppercase leading-tight truncate group-hover:text-[#38bdf8] transition-colors">
+                  VEXTA
                 </span>
-                <span className="text-[#39FF14] animate-blink font-bold text-base leading-none">_</span>
+                <span className="text-[#38bdf8] animate-pulse font-mono text-xs font-bold leading-none">//</span>
+                <span className="font-mono text-[10px] text-[#38bdf8] uppercase tracking-wider hidden sm:inline">E2EE</span>
               </div>
-              <span className="font-sans text-[10px] md:text-[11px] text-[#7E927F] tracking-[0.2em] uppercase mt-1 border-t border-[#1C241B] pt-0.5 inline-block w-full font-bold">
-                Encrypted Messenger
+              <span className="font-mono text-[9px] sm:text-[10px] text-[#94a3b8] tracking-[0.12em] uppercase leading-tight truncate flex items-center gap-1">
+                <span>BY</span> <span className="text-[#cbd5e1] font-semibold">ORIENTIS DIGITAL</span>
               </span>
             </div>
-          </NavLink>
+          </Link>
 
           {/* Navigation Links & Action Button */}
-          <nav className="flex items-center gap-6">
-            <ul className="flex list-none gap-7 hidden md:flex items-center transition-all duration-300">
+          <div className="flex items-center gap-4">
+            <nav className="hidden md:flex items-center gap-1" aria-label="Desktop Navigation">
               {navLinks.map((link) => {
                 const isActive = link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path);
                 return (
-                  <li key={link.path}>
-                    <NavLink
-                      to={link.path}
-                      className={`text-sm font-bold tracking-wider transition-colors relative py-1.5 uppercase cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-gradient-to-r after:from-[#4ADE80] after:to-[#22C55E] hover:after:w-full after:transition-all after:duration-300 ${
-                        isActive ? 'text-[#39FF14] after:w-full font-extrabold' : 'text-gray-200 hover:text-[#4ADE80] after:w-0'
-                      }`}
-                    >
-                      {link.name}
-                    </NavLink>
-                  </li>
+                  <NavLink
+                    key={link.path}
+                    to={link.path}
+                    className={isActive ? activeStyle : inactiveStyle}
+                  >
+                    <span className="text-[#38bdf8] text-[11px] opacity-75">{isActive ? '>' : '#'}</span>
+                    <span>{link.name}</span>
+                  </NavLink>
                 );
               })}
-            </ul>
+            </nav>
 
             {/* Quick Action CTA Button */}
             <NavLink
               to="/downloads"
-              className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl font-mono text-xs md:text-sm font-bold uppercase tracking-wider text-white bg-[#22C55E]/20 border border-[#22C55E]/40 hover:bg-[#22C55E] hover:border-[#39FF14] hover:text-black shadow-[0_0_12px_rgba(34,197,94,0.2)] hover:shadow-[0_0_22px_rgba(57,255,20,0.5)] transition-all duration-300 no-underline cursor-pointer"
+              className="btn-cyber-primary text-xs py-2 px-3.5 tracking-wider hidden sm:inline-flex items-center gap-2"
             >
-              <i className="fa-solid fa-download text-xs text-[#39FF14] group-hover:text-black"></i>
-              <span>Get Client</span>
+              <i className="fa-solid fa-download text-xs text-[#38bdf8]"></i>
+              <span>[ GET CLIENT ]</span>
             </NavLink>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle navigation menu"
-              className="md:hidden flex flex-col justify-center items-center w-11 h-11 border border-[#243022] rounded-xl bg-[#0E120D] text-[#4ADE80] hover:text-white hover:border-[#22C55E] transition-colors cursor-pointer"
+              className="md:hidden flex items-center justify-center w-9 h-9 border border-[#1e2e4a] rounded-[2px] bg-[#0c1322] text-[#38bdf8] hover:border-[#38bdf8] transition-colors cursor-pointer"
             >
-              <i className={`fa-solid ${mobileOpen ? 'fa-xmark text-xl' : 'fa-bars text-base'}`}></i>
+              <i className={`fa-solid ${mobileOpen ? 'fa-xmark text-lg' : 'fa-bars text-sm'}`}></i>
             </button>
-          </nav>
+          </div>
         </div>
       </header>
 
       {/* Mobile Drawer Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 bg-[#08080A]/98 backdrop-blur-xl z-[998] flex flex-col justify-center items-center p-6 md:hidden animate-in fade-in duration-200">
-          <ul className="flex flex-col list-none gap-6 text-center w-full max-w-xs">
+        <div className="fixed inset-0 top-[64px] bg-[#070b12]/98 backdrop-blur-2xl z-[998] flex flex-col p-6 md:hidden animate-in fade-in duration-200 border-b border-[#1e2e4a] overflow-y-auto">
+          <div className="flex items-center justify-between pb-3 border-b border-[#1e2e4a] mb-4 text-xs font-mono text-[#94a3b8]">
+            <span className="flex items-center gap-2">
+              <span className="status-pulse"></span>
+              <span>NAVIGATION_MENU</span>
+            </span>
+            <span className="text-[#38bdf8]">SYS_ACTIVE</span>
+          </div>
+
+          <ul className="flex flex-col list-none gap-2.5 p-0 m-0">
             {navLinks.map((link) => {
               const isActive = link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path);
               return (
@@ -92,26 +119,36 @@ export default function Navbar() {
                   <NavLink
                     to={link.path}
                     onClick={() => setMobileOpen(false)}
-                    className={`text-lg font-extrabold tracking-widest block py-2 uppercase no-underline transition-colors ${
-                      isActive ? 'text-[#39FF14]' : 'text-gray-200 hover:text-white'
+                    className={`text-sm font-mono tracking-wider py-3 px-4 rounded-[2px] transition-all flex items-center justify-between uppercase no-underline ${
+                      isActive
+                        ? 'bg-[#0c182c] text-[#38bdf8] font-medium border border-[#1e3a66] border-l-[3px] border-l-[#38bdf8] shadow-[0_0_15px_rgba(56,189,248,0.2)]'
+                        : 'text-[#cbd5e1] hover:text-[#38bdf8] bg-[#0a101d] border border-[#1e2e4a] hover:bg-[#0f1a2e]'
                     }`}
                   >
-                    {link.name}
+                    <span className="flex items-center gap-2">
+                      <span className="text-[#38bdf8]">{isActive ? '>' : '#'}</span>
+                      <span>{link.name}</span>
+                    </span>
+                    <i className="fa-solid fa-chevron-right text-xs opacity-50"></i>
                   </NavLink>
                 </li>
               );
             })}
-            <li className="pt-4 border-t border-[#243022]">
+            <li className="pt-3">
               <NavLink
                 to="/downloads"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-mono text-sm font-bold uppercase tracking-wider text-black bg-[#22C55E] hover:bg-[#39FF14] border border-[#39FF14] no-underline shadow-[0_0_20px_rgba(34,197,94,0.35)]"
+                className="btn-cyber-primary w-full py-3 text-center flex items-center justify-center gap-2 no-underline text-sm"
               >
                 <i className="fa-solid fa-download text-sm"></i>
-                <span>Download Vexta Client</span>
+                <span>[ DOWNLOAD VEXTA CLIENT ]</span>
               </NavLink>
             </li>
           </ul>
+
+          <div className="mt-auto pt-6 border-t border-[#1e2e4a] text-center font-mono text-[11px] text-[#64748b]">
+            ORIENTIS DIGITAL // SOVEREIGN CYBER SYSTEMS
+          </div>
         </div>
       )}
     </>

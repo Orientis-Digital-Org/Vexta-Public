@@ -15,7 +15,7 @@ export default function FaqPage() {
       category: 'general',
       question: 'What is Vexta and how does it protect my privacy?',
       answer:
-        'Vexta is a free, sovereign messaging application for Windows, Linux, and Android. It protects your privacy by eliminating accounts, phone numbers, and cloud databases entirely. Your conversations are sealed with a new unique cryptographic lock for every single message, meaning only your intended recipient can ever read what you send.'
+        'Vexta is a free, sovereign messaging application for Windows, Linux, and Android. It protects your privacy by eliminating user databases, phone numbers, and cloud storage entirely. Your conversations are sealed with a new unique cryptographic lock for every single message, meaning only your intended recipient can ever read what you send.'
     },
     {
       id: 2,
@@ -111,41 +111,41 @@ export default function FaqPage() {
   });
 
   return (
-    <div className="flex flex-col gap-8 py-4 max-w-5xl mx-auto w-full text-gray-200">
+    <div className="flex flex-col gap-8 py-4 max-w-5xl mx-auto w-full text-[#cbd5e1]">
       {/* 1. Header Hero Bento */}
-      <BentoCard hover={false} className="p-8 md:p-12 text-center flex flex-col items-center gap-5 relative overflow-hidden border-[#243022] bg-[#0E120D]">
-        <div className="w-16 h-16 rounded-2xl bg-[#22C55E]/15 border border-[#22C55E]/40 flex items-center justify-center text-3xl text-[#39FF14] shadow-[0_0_20px_rgba(57,255,20,0.2)]">
+      <BentoCard hover={false} brackets={true} className="p-8 md:p-12 text-center flex flex-col items-center gap-5 relative overflow-hidden border-[#1e2e4a] bg-[#0c1322]">
+        <div className="w-14 h-14 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-2xl text-[#38bdf8] shadow-[0_0_20px_rgba(56,189,248,0.2)]">
           <i className="fa-solid fa-circle-question"></i>
         </div>
         <SectionHeader
-          tag="// FREQUENTLY ASKED QUESTIONS"
-          title="Everything You Need to Know"
-          description="Clear, straightforward answers about how Vexta works, how we protect your privacy, and why no phone number is ever required."
+          tag="KNOWLEDGE BASE"
+          title="Frequently Asked Questions"
+          description="Clear, straightforward answers about how Vexta works, how we protect your confidentiality, and why zero credentials are ever required."
         />
         <div className="flex flex-wrap items-center justify-center gap-3 mt-1">
-          <StatusBadge label="Zero Surveillance" variant="neon" />
-          <StatusBadge label="Plain English Answers" variant="green" />
+          <StatusBadge label="Zero Surveillance" variant="cyan" />
+          <StatusBadge label="Open Architecture" variant="green" />
         </div>
       </BentoCard>
 
       {/* 2. Filter Toolbar & Search Bento */}
-      <BentoCard hover={false} className="p-5 flex flex-col lg:flex-row justify-between items-center gap-4 shadow-xl border-[#243022] bg-[#0E120D]">
+      <BentoCard hover={false} brackets={true} className="p-4 flex flex-col lg:flex-row justify-between items-center gap-4 shadow-xl border-[#1e2e4a] bg-[#0c1322]">
         {/* Category Pills */}
         <div className="flex flex-wrap gap-2 w-full lg:w-auto">
           {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={"px-4 py-2.5 font-mono text-xs md:text-sm font-bold uppercase rounded-xl transition-all cursor-pointer flex items-center gap-2 border " + (
+              className={"px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider rounded-[2px] transition-all cursor-pointer flex items-center gap-2 border " + (
                 activeCategory === cat.key
-                  ? 'bg-[#22C55E] text-black border-[#39FF14] shadow-md'
-                  : 'bg-[#060805] text-gray-300 border-[#243022] hover:text-white hover:bg-[#141C13]'
+                  ? 'bg-[#0c182c] text-[#38bdf8] border-[#1e3a66] shadow-[0_0_10px_rgba(56,189,248,0.15)] font-semibold'
+                  : 'bg-[#08101d] text-[#94a3b8] border-[#1e2e4a] hover:text-[#f8fafc] hover:bg-[#0c1322]'
               )}
             >
               <span>{cat.label}</span>
               <span
-                className={"px-2 py-0.5 rounded text-xs " + (
-                  activeCategory === cat.key ? 'bg-black/30 text-black font-extrabold' : 'bg-white/10 text-gray-400'
+                className={"px-1.5 py-0.5 rounded-[2px] text-[10px] " + (
+                  activeCategory === cat.key ? 'bg-[#38bdf8]/20 text-[#38bdf8] font-bold' : 'bg-white/5 text-[#94a3b8]'
                 )}
               >
                 {cat.count}
@@ -155,22 +155,22 @@ export default function FaqPage() {
         </div>
 
         {/* Search Input & Expand Actions */}
-        <div className="flex items-center gap-3 w-full lg:w-auto justify-end">
+        <div className="flex items-center gap-2.5 w-full lg:w-auto justify-end">
           <div className="relative w-full lg:w-64">
-            <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#7E927F]">
+            <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#64748b]">
               <i className="fa-solid fa-magnifying-glass text-xs"></i>
             </span>
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search questions..."
-              className="w-full bg-[#060805] border border-[#243022] rounded-xl pl-9 pr-8 py-2.5 font-mono text-xs md:text-sm text-gray-100 focus:outline-none focus:border-[#22C55E] placeholder:text-[#7E927F]"
+              placeholder="Filter topics..."
+              className="w-full bg-[#08101d] border border-[#1e2e4a] rounded-[2px] pl-8 pr-8 py-1.5 font-mono text-xs text-[#f8fafc] focus:outline-none focus:border-[#38bdf8] placeholder:text-[#64748b]"
             />
             {search && (
               <button
                 onClick={() => setSearch('')}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#7E927F] hover:text-white cursor-pointer"
+                className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-[#64748b] hover:text-[#f8fafc] cursor-pointer"
               >
                 <i className="fa-solid fa-xmark text-xs"></i>
               </button>
@@ -179,44 +179,44 @@ export default function FaqPage() {
 
           <button
             onClick={expandAll}
-            className="px-3.5 py-2.5 font-mono text-xs font-bold uppercase border border-[#243022] text-gray-200 hover:text-white hover:bg-[#141C13] rounded-xl transition-all shrink-0 cursor-pointer hidden sm:block"
+            className="px-3 py-1.5 font-mono text-xs uppercase border border-[#1e2e4a] text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#08101d] rounded-[2px] transition-all shrink-0 cursor-pointer hidden sm:block"
             title="Expand All Items"
           >
-            Expand All
+            [ + ]
           </button>
           <button
             onClick={collapseAll}
-            className="px-3.5 py-2.5 font-mono text-xs font-bold uppercase border border-[#243022] text-[#7E927F] hover:text-white hover:bg-[#141C13] rounded-xl transition-all shrink-0 cursor-pointer hidden sm:block"
+            className="px-3 py-1.5 font-mono text-xs uppercase border border-[#1e2e4a] text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#08101d] rounded-[2px] transition-all shrink-0 cursor-pointer hidden sm:block"
             title="Collapse All Items"
           >
-            Collapse All
+            [ - ]
           </button>
         </div>
       </BentoCard>
 
       {/* 3. FAQ Accordion List */}
-      <div className="flex flex-col gap-3.5">
+      <div className="flex flex-col gap-3">
         {filteredFaqs.length > 0 ? (
           filteredFaqs.map((faq) => {
             const isOpen = !!openFaqs[faq.id];
             return (
               <div
                 key={faq.id}
-                className={"rounded-2xl overflow-hidden border transition-all duration-200 " + (
-                  isOpen ? 'border-[#22C55E]/50 bg-[#0E140C] shadow-[0_4px_25px_rgba(34,197,94,0.1)]' : 'border-[#243022] bg-[#0A0E09] hover:border-[#22C55E]/40'
+                className={"rounded-[2px] overflow-hidden border transition-all duration-200 " + (
+                  isOpen ? 'border-[#1e3a66] bg-[#0c182c]/80 shadow-[0_0_15px_rgba(56,189,248,0.1)]' : 'border-[#1e2e4a] bg-[#0c1322] hover:border-[#38bdf8]/50'
                 )}
               >
                 <button
                   onClick={() => toggleFaq(faq.id)}
-                  className="w-full text-left p-5 md:p-6 flex justify-between items-center gap-4 focus:outline-none cursor-pointer group select-none"
+                  className="w-full text-left p-4 md:p-5 flex justify-between items-center gap-4 focus:outline-none cursor-pointer group select-none"
                 >
-                  <span className="text-sm md:text-base font-bold text-white group-hover:text-[#4ADE80] transition-colors flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[#39FF14] shrink-0"></span>
+                  <span className="text-sm font-semibold text-[#f8fafc] group-hover:text-[#38bdf8] transition-colors flex items-center gap-3">
+                    <span className="text-[#38bdf8] font-mono text-xs">{isOpen ? '>' : '#'}</span>
                     <span>{faq.question}</span>
                   </span>
                   <span
-                    className={"w-8 h-8 rounded-lg bg-[#060805] border border-[#243022] flex items-center justify-center text-[#22C55E] transition-transform duration-200 shrink-0 " + (
-                      isOpen ? 'rotate-180 bg-[#22C55E]/20 border-[#22C55E]/50 text-[#39FF14]' : ''
+                    className={"w-7 h-7 rounded-[2px] bg-[#08101d] border border-[#1e2e4a] flex items-center justify-center text-[#38bdf8] transition-transform duration-200 shrink-0 " + (
+                      isOpen ? 'rotate-180 bg-[#0c182c] border-[#1e3a66]' : ''
                     )}
                   >
                     <i className="fa-solid fa-chevron-down text-xs"></i>
@@ -224,7 +224,7 @@ export default function FaqPage() {
                 </button>
 
                 {isOpen && (
-                  <div className="border-t border-[#1C241B] bg-[#060805] p-5 md:p-6 text-sm md:text-base text-gray-300 leading-relaxed font-sans">
+                  <div className="border-t border-[#1e2e4a] bg-[#070b12] p-5 md:p-6 text-xs md:text-sm text-[#94a3b8] leading-relaxed font-sans">
                     {faq.answer}
                   </div>
                 )}
@@ -232,9 +232,9 @@ export default function FaqPage() {
             );
           })
         ) : (
-          <BentoCard hover={false} className="p-12 items-center justify-center text-center gap-4 border-[#243022]">
-            <i className="fa-solid fa-magnifying-glass text-[#7E927F] text-3xl animate-pulse"></i>
-            <div className="text-sm font-mono text-gray-400 uppercase">
+          <BentoCard hover={false} brackets={true} className="p-12 items-center justify-center text-center gap-4 border-[#1e2e4a] bg-[#0c1322]">
+            <i className="fa-solid fa-magnifying-glass text-[#64748b] text-2xl animate-pulse"></i>
+            <div className="text-xs font-mono text-[#94a3b8] uppercase">
               No questions matching "{search}"
             </div>
             <button
@@ -242,33 +242,33 @@ export default function FaqPage() {
                 setSearch('');
                 setActiveCategory('all');
               }}
-              className="px-5 py-2.5 font-mono text-xs md:text-sm font-bold uppercase bg-[#22C55E] text-black rounded-xl shadow-md cursor-pointer hover:bg-[#39FF14]"
+              className="btn-cyber-primary px-4 py-2 text-xs"
             >
-              Reset Filters
+              [ RESET FILTERS ]
             </button>
           </BentoCard>
         )}
       </div>
 
       {/* 4. Still Have Questions Banner */}
-      <BentoCard className="p-7 md:p-9 flex flex-col sm:flex-row items-center justify-between gap-6 border-[#243022] bg-[#0E120D] shadow-xl">
+      <BentoCard brackets={true} className="p-7 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-[#1e2e4a] bg-[#0c1322] shadow-xl">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#39FF14] text-xl shrink-0">
+          <div className="w-10 h-10 rounded-[2px] bg-[#0c182c] border border-[#1e3a66] flex items-center justify-center text-[#38bdf8] text-lg shrink-0">
             <i className="fa-solid fa-book-open"></i>
           </div>
           <div className="flex flex-col gap-1 text-left">
-            <h3 className="text-base md:text-lg font-bold uppercase tracking-wider text-white font-mono">Want to Dive Deeper?</h3>
-            <p className="text-xs md:text-sm text-gray-400 font-sans">
-              Read our complete User Guide for step-by-step setup walkthroughs and security details.
+            <h3 className="text-sm md:text-base font-semibold uppercase tracking-wider text-[#f8fafc] font-mono">Want to Dive Deeper?</h3>
+            <p className="text-xs text-[#94a3b8] font-sans">
+              Read our complete User Guide for step-by-step setup walkthroughs and cryptographic specifications.
             </p>
           </div>
         </div>
         <Link
           to="/docs"
-          className="px-6 py-3 font-mono text-xs md:text-sm font-bold uppercase tracking-wider text-black bg-[#22C55E] hover:bg-[#39FF14] rounded-xl transition-all shrink-0 cursor-pointer no-underline flex items-center gap-2 shadow-lg border border-[#39FF14]"
+          className="btn-cyber-primary px-5 py-2.5 text-xs font-mono tracking-wider shrink-0 no-underline inline-flex items-center gap-2"
         >
-          <span>Open User Guide</span>
-          <i className="fa-solid fa-arrow-right text-xs text-black"></i>
+          <span>[ USER MANUAL ]</span>
+          <i className="fa-solid fa-arrow-right text-[10px]"></i>
         </Link>
       </BentoCard>
     </div>
