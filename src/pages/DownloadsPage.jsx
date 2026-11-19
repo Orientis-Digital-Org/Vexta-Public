@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import confetti from 'canvas-confetti';
 import BentoCard from '../components/ui/BentoCard';
@@ -19,20 +19,9 @@ export default function DownloadsPage() {
     downloadApiBaseUrl,
   } = useApp();
 
-  const [detectedOS, setDetectedOS] = useState('windows');
-  const [selectedWinFormat, setSelectedWinFormat] = useState('setup'); // 'setup' | 'portable' | 'msi'
   const [verifyHashInput, setVerifyHashInput] = useState('');
   const [showArchive, setShowArchive] = useState(false);
   const [showVerifier, setShowVerifier] = useState(false);
-
-  // Auto-detect visitor operating system on mount
-  useEffect(() => {
-    const ua = (typeof window !== 'undefined' && navigator.userAgent) ? navigator.userAgent.toLowerCase() : '';
-    if (ua.includes('android')) setDetectedOS('android');
-    else if (ua.includes('linux')) setDetectedOS('linux');
-    else if (ua.includes('mac') || ua.includes('darwin')) setDetectedOS('macos');
-    else setDetectedOS('windows');
-  }, []);
 
   // Categorize specific release artifacts
   const winSetup = clientDownloads.find(
@@ -47,7 +36,6 @@ export default function DownloadsPage() {
 
   const latestAppImage = clientDownloads.find((d) => d.platform_key === 'linux' && d.filename?.endsWith('.AppImage'));
   const latestDeb = clientDownloads.find((d) => d.platform_key === 'linux' && d.filename?.endsWith('.deb'));
-  const latestTarGz = clientDownloads.find((d) => d.platform_key === 'linux' && d.filename?.endsWith('.tar.gz'));
   const latestApk = clientDownloads.find(
     (d) => d.platform_key === 'android' || d.key === 'android_apk' || d.filename?.endsWith('.apk')
   );
@@ -56,8 +44,8 @@ export default function DownloadsPage() {
     if (!dl) return;
     try {
       confetti({
-        particleCount: 75,
-        spread: 65,
+        particleCount: 60,
+        spread: 60,
         origin: { y: 0.75 },
         colors: ['#39ff14', '#22c55e', '#4ade80'],
       });
@@ -93,352 +81,256 @@ export default function DownloadsPage() {
     }, 150);
   };
 
-  // Determine active Windows target based on user selection
-  const getActiveWinTarget = () => {
-    if (selectedWinFormat === 'portable') return winPortable || winSetup || winMsi;
-    if (selectedWinFormat === 'msi') return winMsi || winSetup || winPortable;
-    return winSetup || winPortable || winMsi;
-  };
-
-  // Determine Primary Recommended Download
-  const getPrimaryDownload = () => {
-    if (detectedOS === 'linux') {
-      return {
-        target: latestAppImage || latestDeb || latestTarGz,
-        osName: 'Linux',
-        icon: 'fa-brands fa-linux',
-        typeLabel: 'AppImage (x86_64)',
-        altTarget: latestDeb,
-        altLabel: 'Download .deb Package',
-      };
-    }
-    if (detectedOS === 'android') {
-      return {
-        target: latestApk,
-        osName: 'Android',
-        icon: 'fa-brands fa-android',
-        typeLabel: 'ARM64 APK Package',
-        altTarget: null,
-        altLabel: '',
-      };
-    }
-
-    const winTarget = getActiveWinTarget();
-    const typeLabel = selectedWinFormat === 'portable' 
-      ? 'Standalone Portable (.exe)' 
-      : selectedWinFormat === 'msi' 
-      ? 'Enterprise Package (.msi)' 
-      : 'Setup Wizard (.exe)';
-
-    return {
-      target: winTarget,
-      osName: 'Windows',
-      icon: 'fa-brands fa-windows',
-      typeLabel: typeLabel,
-      altTarget: null,
-      altLabel: '',
-    };
-  };
-
-  const primary = getPrimaryDownload();
-
   // Check if entered hash matches any download
   const allDownloadsList = [...clientDownloads, ...olderDownloads];
   const matchingDownload = verifyHashInput.trim()
     ? allDownloadsList.find((d) => d.sha256 && d.sha256.toLowerCase() === verifyHashInput.trim().toLowerCase())
     : null;
 
+  const currentVerDisplay = selectedVersion || latestClientVersion;
+  const currentBuildDisplay = latestClientBuild ? ` (b${latestClientBuild})` : '';
+
   return (
-    <div className="flex flex-col gap-12 py-4 w-full min-h-[75vh]">
+    <div className="flex flex-col gap-10 py-4 w-full min-h-[75vh]">
       
-      {/* 1. HERO HEADER */}
+      {/* 1. Header */}
       <SectionHeader
-        tag="RELEASE REGISTRY"
-        title="Get Vexta Client"
-        description="Zero-knowledge, end-to-end encrypted messaging. All cryptography, private keys, and ratchet chains remain strictly on your local hardware."
+        tag="OFFICIAL BINARIES"
+        title="Download Vexta Client"
+        description="Select your operating system to download the official native client. No phone number or account required."
       />
 
       {loading ? (
         /* LOADING STATE */
-        <div className="flex flex-col gap-8 animate-in fade-in duration-300">
-          <BentoCard hover={false} brackets={true} className="p-8 md:p-12 border-[#1e2e4a] bg-[#0c1322] shadow-[0_15px_40px_rgba(0,0,0,0.7)] flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-5 w-full md:w-auto">
-              <div className="relative w-16 h-16 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-3xl shrink-0 shadow-lg">
-                <span className="status-pulse"></span>
-                <i className="fa-solid fa-cloud-arrow-down animate-bounce text-2xl text-[#39ff14]"></i>
-              </div>
-              <div className="flex flex-col text-left flex-1 gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="status-pulse"></span>
-                  <span className="text-base md:text-lg font-mono font-semibold text-[#f8fafc] uppercase tracking-wider">
-                    Querying Release Repositories...
-                  </span>
-                </div>
-                <span className="text-xs md:text-sm text-[#94a3b8] font-mono">
-                  Fetching verified binary manifests, signed checksums, and mirror endpoints
-                </span>
-                <div className="w-48 h-1.5 bg-[#070b12] rounded-[2px] overflow-hidden border border-[#1e2e4a] mt-1 relative">
-                  <div className="h-full bg-gradient-to-r from-[#16a34a] via-[#39ff14] to-[#22c55e] rounded-[2px] animate-pulse w-1/2"></div>
-                </div>
-              </div>
+        <BentoCard hover={false} brackets={true} className="p-8 md:p-12 border-[#1e2e4a] bg-[#0c1322] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-5 w-full md:w-auto">
+            <div className="w-14 h-14 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-2xl shrink-0">
+              <i className="fa-solid fa-cloud-arrow-down animate-bounce"></i>
             </div>
-            <div className="w-full md:w-44 h-11 rounded-[2px] bg-[#08101d] border border-[#1e2e4a] flex items-center justify-center font-mono text-xs md:text-sm text-[#4ade80] font-medium uppercase tracking-wider select-none">
-              <i className="fa-solid fa-circle-notch fa-spin mr-2 text-[#39ff14]"></i>
-              Connecting
-            </div>
-          </BentoCard>
-        </div>
-      ) : (
-        /* LOADED STATE WITH BENTO CARDS */
-        <div className="flex flex-col gap-10 animate-in fade-in duration-300">
-          
-          {/* 2. PRIMARY SPOTLIGHT BENTO CARD */}
-          <BentoCard hover={false} glow={true} brackets={true} className="p-7 md:p-9 flex flex-col md:flex-row items-center justify-between gap-6 border-[#1b3d22] bg-[#0c1322]">
-            <div className="flex items-center gap-5 w-full md:w-auto">
-              <div className="w-16 h-16 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-3xl shrink-0 shadow-lg p-3">
-                <i className={primary.icon}></i>
-              </div>
-              <div className="flex flex-col text-left flex-1">
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span className="text-xl md:text-2xl font-bold text-[#f8fafc] uppercase tracking-wider font-sans">
-                    Vexta for {primary.osName}
-                  </span>
-                  {(selectedVersion || latestClientVersion) && (
-                    <StatusBadge
-                      label={`v${selectedVersion || latestClientVersion}${primary.target?.build_number ? ` (b${primary.target.build_number})` : (latestClientBuild ? ` (b${latestClientBuild})` : '')}`}
-                      variant="neon"
-                    />
-                  )}
-                </div>
-                <span className="text-xs md:text-sm text-[#94a3b8] font-mono mt-1.5">
-                  Recommended for your environment • {primary.typeLabel} {primary.target?.size ? `(${primary.target.size})` : ''}
-                </span>
-
-                {/* Windows Format Switcher */}
-                {detectedOS === 'windows' && (
-                  <div className="flex items-center gap-1.5 mt-3.5 bg-[#08101d] p-1 rounded-[2px] border border-[#1e2e4a] w-fit">
-                    <button
-                      onClick={() => setSelectedWinFormat('setup')}
-                      className={`px-3 py-1 rounded-[2px] text-xs font-mono font-medium transition-all cursor-pointer ${
-                        selectedWinFormat === 'setup'
-                          ? 'bg-[#081a10] text-[#39ff14] border border-[#1b3d22] shadow-[0_0_8px_rgba(57,255,20,0.25)]'
-                          : 'text-[#94a3b8] hover:text-[#f8fafc] border border-transparent'
-                      }`}
-                    >
-                      <i className="fa-solid fa-box mr-1.5 text-xs text-[#4ade80]"></i> Setup (.exe)
-                    </button>
-                    <button
-                      onClick={() => setSelectedWinFormat('portable')}
-                      className={`px-3 py-1 rounded-[2px] text-xs font-mono font-medium transition-all cursor-pointer ${
-                        selectedWinFormat === 'portable'
-                          ? 'bg-[#081a10] text-[#39ff14] border border-[#1b3d22] shadow-[0_0_8px_rgba(57,255,20,0.25)]'
-                          : 'text-[#94a3b8] hover:text-[#f8fafc] border border-transparent'
-                      }`}
-                    >
-                      <i className="fa-solid fa-bolt mr-1.5 text-xs text-[#4ade80]"></i> Portable (.exe)
-                    </button>
-                    <button
-                      onClick={() => setSelectedWinFormat('msi')}
-                      className={`px-3 py-1 rounded-[2px] text-xs font-mono font-medium transition-all cursor-pointer ${
-                        selectedWinFormat === 'msi'
-                          ? 'bg-[#081a10] text-[#39ff14] border border-[#1b3d22] shadow-[0_0_8px_rgba(57,255,20,0.25)]'
-                          : 'text-[#94a3b8] hover:text-[#f8fafc] border border-transparent'
-                      }`}
-                    >
-                      <i className="fa-solid fa-building mr-1.5 text-xs text-[#4ade80]"></i> MSI (.msi)
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Action Button & Hash Pill */}
-            <div className="flex flex-col items-center md:items-end gap-3.5 w-full md:w-auto shrink-0">
-              <button
-                onClick={() => triggerDownload(primary.target)}
-                className="btn-cyber-primary w-full md:w-auto px-7 py-3 text-xs md:text-sm flex items-center justify-center gap-2.5 cursor-pointer"
-              >
-                <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
-                <span>[ DOWNLOAD {primary.typeLabel.split(' ')[0].toUpperCase()} ]</span>
-              </button>
-
-              {primary.target?.sha256 && (
-                <CopyPill
-                  text={primary.target.sha256}
-                  displayValue={`SHA-256: ${primary.target.sha256.slice(0, 16)}...`}
-                  className="w-full md:w-auto"
-                />
-              )}
-            </div>
-          </BentoCard>
-
-          {/* 3. ALL PLATFORMS BENTO GRID */}
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between border-b border-[#1e2e4a] pb-3">
-              <h2 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#4ade80] flex items-center gap-2">
-                <span className="status-pulse"></span>
-                <span>AVAILABLE TARGET PLATFORMS</span>
-              </h2>
-              <span className="text-[11px] font-mono text-[#94a3b8]">CRYPTOGRAPHICALLY VERIFIED BINARIES</span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              
-              {/* WINDOWS CARD */}
-              <BentoCard span="col-span-1" brackets={true} className="p-6 justify-between gap-4 bg-[#0c1322] border-[#1e2e4a]">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-xl">
-                      <i className="fa-brands fa-windows"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-[#f8fafc] uppercase font-mono">Windows</h3>
-                      <span className="text-[11px] font-mono text-[#94a3b8]">x64 (Windows 10 / 11)</span>
-                    </div>
-                  </div>
-                  <StatusBadge label="STABLE" variant="green" />
-                </div>
-
-                <div className="flex flex-col gap-3 pt-3 border-t border-[#1e2e4a]">
-                  {winSetup && (
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <div className="flex flex-col">
-                        <span className="text-[#f8fafc] font-medium">Setup (.exe)</span>
-                        <span className="text-[10px] text-[#94a3b8]">Standard Installer</span>
-                      </div>
-                      <button
-                        onClick={() => triggerDownload(winSetup)}
-                        className="btn-cyber-ghost px-3 py-1 text-xs hover:border-[#22c55e] hover:text-[#4ade80]"
-                      >
-                        Get .exe
-                      </button>
-                    </div>
-                  )}
-                  {winPortable && (
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <div className="flex flex-col">
-                        <span className="text-[#f8fafc] font-medium">Portable (.exe)</span>
-                        <span className="text-[10px] text-[#94a3b8]">Zero-Install Standalone</span>
-                      </div>
-                      <button
-                        onClick={() => triggerDownload(winPortable)}
-                        className="btn-cyber-ghost px-3 py-1 text-xs hover:border-[#22c55e] hover:text-[#4ade80]"
-                      >
-                        Get .exe
-                      </button>
-                    </div>
-                  )}
-                  {winMsi && (
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <div className="flex flex-col">
-                        <span className="text-[#f8fafc] font-medium">Enterprise (.msi)</span>
-                        <span className="text-[10px] text-[#94a3b8]">Windows Installer</span>
-                      </div>
-                      <button
-                        onClick={() => triggerDownload(winMsi)}
-                        className="btn-cyber-ghost px-3 py-1 text-xs hover:border-[#22c55e] hover:text-[#4ade80]"
-                      >
-                        Get .msi
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </BentoCard>
-
-              {/* ANDROID CARD */}
-              <BentoCard span="col-span-1" brackets={true} className="p-6 justify-between gap-4 bg-[#0c1322] border-[#1e2e4a]">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-xl">
-                      <i className="fa-brands fa-android"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-[#f8fafc] uppercase font-mono">Android</h3>
-                      <span className="text-[11px] font-mono text-[#94a3b8]">ARM64 / APK Sideload</span>
-                    </div>
-                  </div>
-                  <StatusBadge label="ACTIVE" variant="neon" />
-                </div>
-
-                <div className="flex flex-col gap-3 pt-3 border-t border-[#1e2e4a]">
-                  {latestApk ? (
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <div className="flex flex-col">
-                        <span className="text-[#f8fafc] font-medium">Direct Package (.apk)</span>
-                        <span className="text-[10px] text-[#94a3b8]">Android 8.0+ (ARM64)</span>
-                      </div>
-                      <button
-                        onClick={() => triggerDownload(latestApk)}
-                        className="btn-cyber-primary px-3 py-1 text-xs"
-                      >
-                        Get .apk
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="text-xs font-mono text-[#94a3b8] py-1">
-                      Build available in release registry
-                    </div>
-                  )}
-                </div>
-              </BentoCard>
-
-              {/* LINUX CARD */}
-              <BentoCard span="col-span-1" brackets={true} className="p-6 justify-between gap-4 bg-[#0c1322] border-[#1e2e4a]">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-xl">
-                      <i className="fa-brands fa-linux"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-[#f8fafc] uppercase font-mono">Linux</h3>
-                      <span className="text-[11px] font-mono text-[#94a3b8]">x86_64 / Debian</span>
-                    </div>
-                  </div>
-                  <StatusBadge label="STABLE" variant="green" />
-                </div>
-
-                <div className="flex flex-col gap-3 pt-3 border-t border-[#1e2e4a]">
-                  {latestAppImage && (
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-[#f8fafc] font-medium">AppImage (x86_64)</span>
-                      <button
-                        onClick={() => triggerDownload(latestAppImage)}
-                        className="btn-cyber-primary px-3 py-1 text-xs"
-                      >
-                        Get AppImage
-                      </button>
-                    </div>
-                  )}
-                  {latestDeb && (
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-[#cbd5e1] font-medium">Debian (.deb)</span>
-                      <button
-                        onClick={() => triggerDownload(latestDeb)}
-                        className="btn-cyber-ghost px-3 py-1 text-xs hover:border-[#22c55e] hover:text-[#4ade80]"
-                      >
-                        Get .deb
-                      </button>
-                    </div>
-                  )}
-                  {!latestAppImage && !latestDeb && (
-                    <div className="text-xs font-mono text-[#94a3b8] py-1">
-                      Build available on demand
-                    </div>
-                  )}
-                </div>
-              </BentoCard>
-
+            <div className="flex flex-col text-left flex-1 gap-1">
+              <span className="text-base font-mono font-semibold text-[#f8fafc] uppercase tracking-wider">
+                Querying Release Repositories...
+              </span>
+              <span className="text-xs text-[#94a3b8] font-mono">
+                Fetching verified binary manifests and signed checksums
+              </span>
             </div>
           </div>
+          <div className="w-full md:w-40 h-10 rounded-[2px] bg-[#08101d] border border-[#1e2e4a] flex items-center justify-center font-mono text-xs text-[#4ade80] uppercase tracking-wider">
+            <i className="fa-solid fa-circle-notch fa-spin mr-2 text-[#39ff14]"></i>
+            Connecting
+          </div>
+        </BentoCard>
+      ) : (
+        /* 2. THREE SIMPLIFIED CARDS: WINDOWS, ANDROID, LINUX */
+        <div className="flex flex-col gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* CARD 1: WINDOWS */}
+            <BentoCard span="col-span-1" brackets={true} className="p-6 md:p-7 flex flex-col justify-between gap-6 bg-[#0c1322] border-[#1e2e4a] hover:border-[#22c55e] transition-colors">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-2xl shrink-0">
+                      <i className="fa-brands fa-windows"></i>
+                    </div>
+                    <div className="flex flex-col">
+                      <h2 className="text-lg font-bold text-[#f8fafc] uppercase font-mono">Windows</h2>
+                      <span className="text-xs font-mono text-[#94a3b8]">x64 (Windows 10 / 11)</span>
+                    </div>
+                  </div>
+                  <StatusBadge label="STABLE" variant="green" />
+                </div>
 
-          {/* 4. ADVANCED VERIFIER & ARCHIVE ACCORDIONS */}
-          <div className="flex flex-col gap-4">
+                {currentVerDisplay && (
+                  <div className="text-xs font-mono text-[#4ade80] bg-[#081a10] p-2 rounded-[2px] border border-[#1b3d22]">
+                    // RELEASE: v{currentVerDisplay}{currentBuildDisplay}
+                  </div>
+                )}
+
+                <p className="text-xs text-[#94a3b8] leading-relaxed">
+                  Fast native client for Windows desktops and laptops. Includes automatic local vault management and background notifications.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-2.5 pt-4 border-t border-[#1e2e4a]">
+                {winSetup && (
+                  <button
+                    onClick={() => triggerDownload(winSetup)}
+                    className="btn-cyber-primary w-full py-2.5 text-xs font-mono flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
+                    <span>DOWNLOAD SETUP (.EXE)</span>
+                  </button>
+                )}
+
+                {winPortable && (
+                  <button
+                    onClick={() => triggerDownload(winPortable)}
+                    className="btn-cyber-ghost w-full py-2.5 text-xs font-mono flex items-center justify-center gap-2 cursor-pointer hover:border-[#22c55e] hover:text-[#4ade80]"
+                  >
+                    <i className="fa-solid fa-bolt text-xs"></i>
+                    <span>PORTABLE (.EXE)</span>
+                  </button>
+                )}
+
+                {winMsi && (
+                  <button
+                    onClick={() => triggerDownload(winMsi)}
+                    className="btn-cyber-ghost w-full py-2 text-xs font-mono flex items-center justify-center gap-2 cursor-pointer hover:border-[#22c55e] hover:text-[#4ade80]"
+                  >
+                    <span>ENTERPRISE (.MSI)</span>
+                  </button>
+                )}
+
+                {(winSetup?.sha256 || winPortable?.sha256) && (
+                  <CopyPill
+                    text={(winSetup || winPortable).sha256}
+                    displayValue={`SHA: ${(winSetup || winPortable).sha256.slice(0, 16)}...`}
+                    className="w-full mt-1"
+                  />
+                )}
+              </div>
+            </BentoCard>
+
+            {/* CARD 2: ANDROID */}
+            <BentoCard span="col-span-1" brackets={true} className="p-6 md:p-7 flex flex-col justify-between gap-6 bg-[#0c1322] border-[#1e2e4a] hover:border-[#22c55e] transition-colors">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-2xl shrink-0">
+                      <i className="fa-brands fa-android"></i>
+                    </div>
+                    <div className="flex flex-col">
+                      <h2 className="text-lg font-bold text-[#f8fafc] uppercase font-mono">Android</h2>
+                      <span className="text-xs font-mono text-[#94a3b8]">ARM64 (Android 8.0+)</span>
+                    </div>
+                  </div>
+                  <StatusBadge label="MOBILE" variant="neon" />
+                </div>
+
+                {currentVerDisplay && (
+                  <div className="text-xs font-mono text-[#4ade80] bg-[#081a10] p-2 rounded-[2px] border border-[#1b3d22]">
+                    // RELEASE: v{currentVerDisplay}{latestApk?.build_number ? ` (b${latestApk.build_number})` : currentBuildDisplay}
+                  </div>
+                )}
+
+                <p className="text-xs text-[#94a3b8] leading-relaxed">
+                  Standalone mobile package for Android phones and tablets. Direct APK sideload with zero Google Play services requirement.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-2.5 pt-4 border-t border-[#1e2e4a]">
+                {latestApk ? (
+                  <button
+                    onClick={() => triggerDownload(latestApk)}
+                    className="btn-cyber-primary w-full py-2.5 text-xs font-mono flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
+                    <span>DOWNLOAD APK (.APK)</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => triggerDownload({ filename: `vexta-v${currentVerDisplay || 'latest'}.apk`, platform_key: 'android' })}
+                    className="btn-cyber-primary w-full py-2.5 text-xs font-mono flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
+                    <span>DOWNLOAD APK (.APK)</span>
+                  </button>
+                )}
+
+                <div className="text-[11px] font-mono text-[#94a3b8] text-center py-1">
+                  Supports Android 8.0+ / ARM64
+                </div>
+
+                {latestApk?.sha256 && (
+                  <CopyPill
+                    text={latestApk.sha256}
+                    displayValue={`SHA: ${latestApk.sha256.slice(0, 16)}...`}
+                    className="w-full mt-1"
+                  />
+                )}
+              </div>
+            </BentoCard>
+
+            {/* CARD 3: LINUX */}
+            <BentoCard span="col-span-1" brackets={true} className="p-6 md:p-7 flex flex-col justify-between gap-6 bg-[#0c1322] border-[#1e2e4a] hover:border-[#22c55e] transition-colors">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-[2px] bg-[#081a10] border border-[#1b3d22] flex items-center justify-center text-[#39ff14] text-2xl shrink-0">
+                      <i className="fa-brands fa-linux"></i>
+                    </div>
+                    <div className="flex flex-col">
+                      <h2 className="text-lg font-bold text-[#f8fafc] uppercase font-mono">Linux</h2>
+                      <span className="text-xs font-mono text-[#94a3b8]">x86_64 / Debian</span>
+                    </div>
+                  </div>
+                  <StatusBadge label="STABLE" variant="green" />
+                </div>
+
+                {currentVerDisplay && (
+                  <div className="text-xs font-mono text-[#4ade80] bg-[#081a10] p-2 rounded-[2px] border border-[#1b3d22]">
+                    // RELEASE: v{currentVerDisplay}{currentBuildDisplay}
+                  </div>
+                )}
+
+                <p className="text-xs text-[#94a3b8] leading-relaxed">
+                  Universal AppImage (runs on Ubuntu, Fedora, Arch, Debian) and native Debian (.deb) package with zero external dependencies.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-2.5 pt-4 border-t border-[#1e2e4a]">
+                {latestAppImage ? (
+                  <button
+                    onClick={() => triggerDownload(latestAppImage)}
+                    className="btn-cyber-primary w-full py-2.5 text-xs font-mono flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
+                    <span>DOWNLOAD APPIMAGE</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => triggerDownload({ filename: `vexta-v${currentVerDisplay || 'latest'}.AppImage`, platform_key: 'linux' })}
+                    className="btn-cyber-primary w-full py-2.5 text-xs font-mono flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <i className="fa-solid fa-download text-xs text-[#39ff14]"></i>
+                    <span>DOWNLOAD APPIMAGE</span>
+                  </button>
+                )}
+
+                {latestDeb && (
+                  <button
+                    onClick={() => triggerDownload(latestDeb)}
+                    className="btn-cyber-ghost w-full py-2.5 text-xs font-mono flex items-center justify-center gap-2 cursor-pointer hover:border-[#22c55e] hover:text-[#4ade80]"
+                  >
+                    <span>DEBIAN PACKAGE (.DEB)</span>
+                  </button>
+                )}
+
+                {(latestAppImage?.sha256 || latestDeb?.sha256) && (
+                  <CopyPill
+                    text={(latestAppImage || latestDeb).sha256}
+                    displayValue={`SHA: ${(latestAppImage || latestDeb).sha256.slice(0, 16)}...`}
+                    className="w-full mt-1"
+                  />
+                )}
+              </div>
+            </BentoCard>
+
+          </div>
+
+          {/* 3. OPTIONAL VERIFIER & ARCHIVE ACCORDIONS */}
+          <div className="flex flex-col gap-4 mt-2">
             
             {/* SHA-256 Checksum Verifier Card */}
             <BentoCard hover={false} brackets={true} className="p-0 overflow-hidden bg-[#0c1322] border-[#1e2e4a]">
               <button
                 onClick={() => setShowVerifier(!showVerifier)}
-                className="w-full p-5 flex items-center justify-between text-xs font-mono font-semibold uppercase text-[#4ade80] hover:text-[#39ff14] bg-[#08101d] transition-colors cursor-pointer select-none"
+                className="w-full p-4 md:p-5 flex items-center justify-between text-xs font-mono font-semibold uppercase text-[#4ade80] hover:text-[#39ff14] bg-[#08101d] transition-colors cursor-pointer select-none"
               >
                 <span className="flex items-center gap-2.5">
                   <i className="fa-solid fa-fingerprint text-sm text-[#39ff14]"></i>
@@ -453,7 +345,7 @@ export default function DownloadsPage() {
                     type="text"
                     value={verifyHashInput}
                     onChange={(e) => setVerifyHashInput(e.target.value)}
-                    placeholder="Paste SHA-256 hash to verify against release catalog..."
+                    placeholder="Paste SHA-256 hash to test match against official release..."
                     className="w-full bg-[#0c1322] border border-[#1e2e4a] rounded-[2px] p-3.5 font-mono text-xs text-[#f8fafc] focus:outline-none focus:border-[#22c55e] placeholder:text-[#64748b]"
                   />
 
@@ -480,7 +372,7 @@ export default function DownloadsPage() {
             <BentoCard hover={false} brackets={true} className="p-0 overflow-hidden bg-[#0c1322] border-[#1e2e4a]">
               <button
                 onClick={() => setShowArchive(!showArchive)}
-                className="w-full p-5 flex items-center justify-between text-xs font-mono font-semibold uppercase text-[#4ade80] hover:text-[#39ff14] bg-[#08101d] transition-colors cursor-pointer select-none"
+                className="w-full p-4 md:p-5 flex items-center justify-between text-xs font-mono font-semibold uppercase text-[#4ade80] hover:text-[#39ff14] bg-[#08101d] transition-colors cursor-pointer select-none"
               >
                 <span className="flex items-center gap-2.5">
                   <i className="fa-solid fa-clock-rotate-left text-sm text-[#22c55e]"></i>
