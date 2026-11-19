@@ -154,14 +154,8 @@ export function AppProvider({ children }) {
     async function fetchBridgeData() {
       // 1. Fetch System Info from Vexta API
       try {
-        let infoRes = await fetch(`${API_BASE}/api/info`);
-        let info = await safeJsonParse(infoRes);
-        if (!info && API_BASE !== 'http://localhost:8000') {
-          try {
-            infoRes = await fetch('http://localhost:8000/api/info');
-            info = await safeJsonParse(infoRes);
-          } catch {}
-        }
+        const infoRes = await fetch(`${API_BASE}/api/info`);
+        const info = await safeJsonParse(infoRes);
         if (info) {
           setBridgeName(info.bridge_name || 'Vexta Bridge');
           setBridgeDescription(info.bridge_description || '');
@@ -234,14 +228,8 @@ export function AppProvider({ children }) {
 
       // 3. Fetch Announcements Feed
       try {
-        let annRes = await fetch(`${API_BASE}/api/announcements`);
-        let annData = await safeJsonParse(annRes);
-        if (!annData && API_BASE !== 'http://localhost:8000') {
-          try {
-            annRes = await fetch('http://localhost:8000/api/announcements');
-            annData = await safeJsonParse(annRes);
-          } catch {}
-        }
+        const annRes = await fetch(`${API_BASE}/api/announcements`);
+        const annData = await safeJsonParse(annRes);
         if (annData) {
           const list = Array.isArray(annData) ? annData : (annData.announcements || []);
           setAnnouncements(list.length > 0 ? list : [DEFAULT_ANNOUNCEMENT]);
