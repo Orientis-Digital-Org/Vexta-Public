@@ -61,8 +61,9 @@ export default function DownloadsPage() {
     }
 
     const base = downloadApiBaseUrl || 'https://downloads.orientis.digital';
+    const rawUrl = dl.url ? dl.url.replace(/https?:\/\/(?:downloads\.)?nexusec\.(?:space|com)/gi, base) : '';
     const url =
-      dl.url ||
+      rawUrl ||
       (downloadFilename && downloadFilename.includes('.')
         ? `${base}/vexta/${downloadFilename}`
         : dl.platform_key && dl.version

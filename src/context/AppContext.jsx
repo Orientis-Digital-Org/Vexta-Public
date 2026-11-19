@@ -85,6 +85,23 @@ export function AppProvider({ children }) {
     return m ? parseInt(m[1], 10) : null;
   };
 
+  const sanitizeUrl = (url) => {
+    if (!url || typeof url !== 'string') return url;
+    return url.replace(/https?:\/\/(?:downloads\.)?nexusec\.(?:space|com)/gi, DOWNLOAD_API_BASE);
+  };
+
+  const sanitizeReleaseData = (data) => {
+    if (!data) return data;
+    try {
+      const jsonStr = JSON.stringify(data);
+      if (jsonStr.includes('nexusec')) {
+        const sanitized = jsonStr.replace(/https?:\/\/(?:downloads\.)?nexusec\.(?:space|com)/gi, DOWNLOAD_API_BASE);
+        return JSON.parse(sanitized);
+      }
+    } catch {}
+    return data;
+  };
+
   const parseReleaseArtifacts = (release) => {
     if (!release) return [];
     const version = release.latest_version || release.version || '0.0.1';
@@ -112,7 +129,7 @@ export function AppProvider({ children }) {
           key: art.key,
           size: art.size_human || '15 MB',
           sha256: art.sha256 || (release.checksums ? (release.checksums[(art.key || '') + '_sha256'] || release.checksums.sha256) : ''),
-          url: art.url,
+          url: sanitizeUrl(art.url),
           format: art.format || '',
           arch: art.arch || 'x64',
         };
@@ -131,7 +148,7 @@ export function AppProvider({ children }) {
           key: key,
           size: '15 MB',
           sha256: (release.checksums && (release.checksums[key + '_sha256'] || release.checksums.sha256)) || '',
-          url: url,
+          url: sanitizeUrl(url),
           format: key,
           arch: 'x64',
         };
@@ -178,7 +195,8 @@ export function AppProvider({ children }) {
       // 2. Fetch Historical Releases & Latest Downloads
       try {
         let releasesRes = await fetch(`${DOWNLOAD_API_BASE}/api/v1/apps/vexta/releases`);
-        let releasesData = await safeJsonParse(releasesRes);
+        let rawReleasesData = await safeJsonParse(releasesRes);
+        let releasesData = sanitizeReleaseData(rawReleasesData);
 
         if (releasesData && releasesData.releases && releasesData.releases.length > 0) {
           const releases = releasesData.releases;
@@ -197,7 +215,8 @@ export function AppProvider({ children }) {
         } else {
           // Fallback to /latest endpoint
           const dlRes = await fetch(`${DOWNLOAD_API_BASE}/api/v1/apps/vexta/releases/latest`);
-          const dlData = await safeJsonParse(dlRes);
+          const rawDlData = await safeJsonParse(dlRes);
+          const dlData = sanitizeReleaseData(rawDlData);
           if (dlData) {
             const ver = dlData.latest_version || '0.0.11';
             const bld = dlData.latest_build || 0;
@@ -213,7 +232,8 @@ export function AppProvider({ children }) {
         console.warn('Centralized downloads server unreachable, falling back to bridge API:', dlErr);
         try {
           const dlRes = await fetch(`${API_BASE}/api/downloads`);
-          const dlData = await safeJsonParse(dlRes);
+          const rawDlData = await safeJsonParse(dlRes);
+          const dlData = sanitizeReleaseData(rawDlData);
           if (dlData) {
             setClientDownloads(dlData.downloads || []);
             setOlderDownloads(dlData.older_downloads || []);
